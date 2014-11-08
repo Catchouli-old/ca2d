@@ -2,18 +2,28 @@
 #include <fstream>
 #include <sstream>
 
-#include <OpenGL.h>
+#include <rendering/OpenGL.h>
 
 #include <rendering/Vertex.h>
 #include <gltypes/GLShaderProgram.h>
-
-GLuint vbo;
+#include <gltypes/GLBufferObject.h>
 
 void render()
 {
+    const float vertices[] =
+    {
+        -1.0f, 1.0f, 0.0f, 0.0f,
+        -1.0f, -1.0f, 0.0f, 1.0f,
+        1.0f, -1.0f, 1.0f, 1.0f,
+        1.0f, 1.0f, 1.0f, 0.0f,
+    };
+
+    const int verticesSize = sizeof(vertices);
+
     // Shaders
     static rend::GLShaderProgram shaderProgram("shaders/simplept.vs.glsl", "shaders/simplept.fs.glsl");
     static rend::GLTexture2D texture("pachu.png");
+    static rend::GLBufferObject vbo(vertices, verticesSize);
 
     // FPS counters
     static uint32_t lastFpsUpdate = SDL_GetTicks();
@@ -37,9 +47,9 @@ void render()
 
     // Random colour every 100 milliseconds
     srand(time / 500);
-    float r = (double)rand() / ((double)RAND_MAX + 1);
-    float g = (double)rand() / ((double)RAND_MAX + 1);
-    float b = (double)rand() / ((double)RAND_MAX + 1);
+    float r = (float)rand() / ((float)RAND_MAX + 1);
+    float g = (float)rand() / ((float)RAND_MAX + 1);
+    float b = (float)rand() / ((float)RAND_MAX + 1);
 
     // Clear screen
     glClearColor(0, 0, 0, 1);
@@ -118,29 +128,6 @@ int main(int argc, char** argv)
         return 1;
     }
 #endif
-
-    // Vertex buffer data
-    //float vertices[] =
-    //{
-    //    -0.5f,  0.5f, 0.0f, 0.0f,
-    //    -0.5f, -0.5f, 0.0f, 1.0f,
-    //     0.5f, -0.5f, 1.0f, 1.0f,
-    //     0.5f,  0.5f, 1.0f, 0.0f,
-    //}; 
-    float vertices[] =
-    {
-        -1.0f, 1.0f, 0.0f, 0.0f,
-        -1.0f, -1.0f, 0.0f, 1.0f,
-        1.0f, -1.0f, 1.0f, 1.0f,
-        1.0f, 1.0f, 1.0f, 0.0f,
-    };
-
-    int verticesSize = sizeof(vertices);
-
-    // Initialise VBO
-    glGenBuffers(1, &vbo);
-    glBindBuffer(GL_ARRAY_BUFFER, vbo);
-    glBufferData(GL_ARRAY_BUFFER, verticesSize, vertices, GL_STATIC_DRAW);
 
     // Main loop
 #ifdef EMSCRIPTEN

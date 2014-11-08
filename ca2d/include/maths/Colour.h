@@ -1,5 +1,4 @@
-#ifndef RENDER_UTILS_COLOUR_H
-#define RENDER_UTILS_COLOUR_H
+#pragma once
 
 #include <glm/vec4.hpp>
 
@@ -42,5 +41,3 @@ namespace rend
              | u8fromfloat(mB);
     }
 }
-
-#endif /* RENDER_UTILS_COLOUR_H */

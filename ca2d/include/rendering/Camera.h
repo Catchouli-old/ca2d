@@ -1,5 +1,4 @@
-#ifndef RENDER_UTILS_CAMERA_H
-#define RENDER_UTILS_CAMERA_H
+#pragma once
 
 #include <glm/vec3.hpp>
 #include <glm/mat4x4.hpp>
@@ -94,5 +93,3 @@ namespace rend
         return mCombined;
     }
 }
-
-#endif /* RENDER_UTILS_CAMERA_H */

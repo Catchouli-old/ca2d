@@ -1,79 +1,46 @@
-#ifndef RENDER_UTILS_GL_SHADER_H
-#define RENDER_UTILS_GL_SHADER_H
+#pragma once
 
-#include "GLSharedHandle.h"
-#include "GLUniqueHandle.h"
 #include "../resources/File.h"
 
 #include <memory>
-#include "../OpenGL.h"
+#include "../rendering/OpenGL.h"
 
 namespace rend
 {
-	template <typename HandleType>
-	class GenericShader;
+    bool compileShader(GLuint shader, const char* filename, const char* source);
 
-	typedef GenericShader<GLUniqueHandle> GLShader;
-	typedef GenericShader<GLSharedHandle> GLSharedShader;
+    struct GLShaderDeleter
+    {
+        typedef GLuint pointer;
 
-	bool compileShader(GLuint shader, const char* filename, const char* source);
+        void operator()(GLuint shader)
+        {
+            glDeleteShader(shader);
+        }
+    };
 
-	template <typename HandleType>
-	class GenericShader
-		: public HandleType
+    class GLShader
 	{
 	public:
-		GenericShader(GLuint type, const char* filename);
+        GLShader(GLuint type, const char* filename);
 
         bool isValid() const;
 
+        operator GLuint() const;
+
     private:
+        std::unique_ptr<GLuint, GLShaderDeleter> mShader;
+
         bool mIsValid;
 	};
 
-	inline void shaderDeleter(GLuint shader)
-	{
-		glDeleteShader(shader);
-	};
-
-	template <typename HandleType>
-	GenericShader<HandleType>::GenericShader(GLuint type, const char* filename)
-		: HandleType(glCreateShader(type), shaderDeleter)
-	{
-		// Read files
-		File file(filename);
-
-		// Return if file read failed
-		if (!file.isLoaded())
-		{
-            mIsValid = false;
-
-            fprintf(stderr, "Failed to read shader source: %s\n", filename);
-
-			return;
-		}
-
-		// Compile shaders
-		compileShader((*this), filename, file.getContents().c_str());
-
-		// Return if compilation failed for either shader
-		if ((GLuint)(*this) == 0)
-        {
-            mIsValid = false;
-
-            fprintf(stderr, "Failed to compile shader: %s\n", filename);
-
-            return;
-        }
-
-        mIsValid = true;
-	}
-
-    template <typename HandleType>
-    inline bool GenericShader<HandleType>::isValid() const
+    inline bool GLShader::isValid() const
     {
         return mIsValid;
     }
-}
 
-#endif /* RENDER_UTILS_GL_SHADER_H */
+    inline GLShader::operator GLuint() const
+    {
+        return mShader.get();
+    }
+}

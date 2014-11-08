@@ -1,14 +1,25 @@
-#ifndef RENDER_UTILS_GL_SHADER_PROGRAM_H
-#define RENDER_UTILS_GL_SHADER_PROGRAM_H
+#pragma once
 
 #include "GLShader.h"
 #include "GLTexture2D.h"
 
-#include "../OpenGL.h"
+#include "../rendering/OpenGL.h"
 #include <glm/matrix.hpp>
+
+#include <memory>
 
 namespace rend
 {
+    struct GLShaderProgramDeleter
+    {
+        typedef GLuint pointer;
+
+        void operator()(GLuint shaderProgram)
+        {
+            glDeleteProgram(shaderProgram);
+        }
+    };
+
 	class GLShaderProgram
 	{
 	public:
@@ -39,8 +50,6 @@ namespace rend
 		operator GLuint() const;
 
 	private:
-		std::shared_ptr<GLuint> mShaderProg;
+		std::unique_ptr<GLuint, GLShaderProgramDeleter> mShaderProg;
 	};
 }
-
-#endif /* RENDER_UTILS_GL_SHADER_PROGRAM_H */

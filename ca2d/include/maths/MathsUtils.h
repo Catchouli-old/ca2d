@@ -1,5 +1,4 @@
-#ifndef RENDER_UTILS_MATHS_UTILS_H
-#define RENDER_UTILS_MATHS_UTILS_H
+#pragma once
 
 #include <algorithm>
 #include <cstdint>
@@ -41,5 +40,3 @@ namespace rend
         return std::max(min, std::min(max, a));
     }
 }
-
-#endif /* RENDER_UTILS_MATHS_UTILS_H */

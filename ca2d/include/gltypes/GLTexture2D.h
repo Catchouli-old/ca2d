@@ -1,8 +1,7 @@
-#ifndef RENDER_UTILS_GL_TEXTURE_2D
-#define RENDER_UTILS_GL_TEXTURE_2D
+#pragma once
 
 #include <memory>
-#include "../OpenGL.h"
+#include "../rendering/OpenGL.h"
 
 namespace rend
 {
@@ -53,5 +52,3 @@ namespace rend
 		return mLoaded;
 	}
 }
-
-#endif /* RENDER_UTILS_GL_TEXTURE_2D */

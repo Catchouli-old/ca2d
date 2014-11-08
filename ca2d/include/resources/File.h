@@ -1,5 +1,4 @@
-#ifndef RENDER_UTILS_FILE_H
-#define RENDER_UTILS_FILE_H
+#pragma once
 
 #include <string>
 #include <fstream>
@@ -100,5 +99,3 @@ namespace rend
         return "";
     }
 }
-
-#endif /* RENDER_UTILS_FILE_H */

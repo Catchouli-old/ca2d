@@ -39,5 +39,37 @@ namespace rend
 		}
 
 		return true;
-	}
+    }
+
+    GLShader::GLShader(GLuint type, const char* filename)
+        : mShader(glCreateShader(type))
+    {
+        // Read files
+        File file(filename);
+
+        // Return if file read failed
+        if (!file.isLoaded())
+        {
+            mIsValid = false;
+
+            fprintf(stderr, "Failed to read shader source: %s\n", filename);
+
+            return;
+        }
+
+        // Compile shaders
+        compileShader(mShader.get(), filename, file.getContents().c_str());
+
+        // Return if compilation failed for either shader
+        if (mShader.get() == 0)
+        {
+            mIsValid = false;
+
+            fprintf(stderr, "Failed to compile shader: %s\n", filename);
+
+            return;
+        }
+
+        mIsValid = true;
+    }
 }

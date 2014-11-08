@@ -1,5 +1,4 @@
-#ifndef RENDER_UTILS_VERTEX_H
-#define RENDER_UTILS_VERTEX_H
+#pragma once
 
 #include <glm/vec3.hpp>
 #include <glm/vec2.hpp>
@@ -114,5 +113,3 @@ namespace rend
         glVertexAttribPointer(location, 2, GL_FLOAT, false, sizeof(Vertex), &uv);
     }
 }
-
-#endif /* RENDER_UTILS_VERTEX_H */

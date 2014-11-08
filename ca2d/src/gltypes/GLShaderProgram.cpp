@@ -8,13 +8,14 @@
 
 namespace rend
 {
-	void shaderProgramDeleter(GLuint* shader)
+	void GLShaderProgramDeleter(GLuint* shader)
 	{
 		glDeleteProgram(*shader);
 		delete shader;
 	};
 
 	GLShaderProgram::GLShaderProgram(const char* vs_filename, const char* fs_filename)
+        : mShaderProg(glCreateProgram())
 	{
 		GLShader vertexShader(GL_VERTEX_SHADER, vs_filename);
 		GLShader fragmentShader(GL_FRAGMENT_SHADER, fs_filename);
@@ -25,15 +26,12 @@ namespace rend
             return;
         }
 
-        // Create shader program
-        mShaderProg = std::shared_ptr<GLuint>(new GLuint(glCreateProgram()), shaderProgramDeleter);
-
 		// Attach shaders
-		glAttachShader(*mShaderProg.get(), vertexShader);
-		glAttachShader(*mShaderProg.get(), fragmentShader);
+		glAttachShader(mShaderProg.get(), vertexShader);
+		glAttachShader(mShaderProg.get(), fragmentShader);
 
 		// Link program
-		glLinkProgram(*mShaderProg.get());
+		glLinkProgram(mShaderProg.get());
 	}
 
 	GLShaderProgram::~GLShaderProgram()
@@ -43,7 +41,7 @@ namespace rend
             GLint currentShader;
             glGetIntegerv(GL_CURRENT_PROGRAM, &currentShader);
 
-            if (currentShader == *mShaderProg.get())
+            if (currentShader == mShaderProg.get())
             {
                 glUseProgram(0);
             }
@@ -52,7 +50,7 @@ namespace rend
 
 	void GLShaderProgram::bind() const
 	{
-		glUseProgram(*mShaderProg.get());
+		glUseProgram(mShaderProg.get());
 	}
 
 	void GLShaderProgram::unbind() const
@@ -62,12 +60,12 @@ namespace rend
 
 	bool GLShaderProgram::isValid() const
 	{
-		return mShaderProg != 0;
+		return mShaderProg.get() != 0;
 	}
 
 	GLint GLShaderProgram::getAttributeLocation(const char* name) const
 	{
-		return glGetAttribLocation(*mShaderProg.get(), name);
+		return glGetAttribLocation(mShaderProg.get(), name);
 	}
 
 	GLint GLShaderProgram::enableAttribute(const char* name)
@@ -102,12 +100,12 @@ namespace rend
 
 	GLint GLShaderProgram::getUniformLocation(const char* name) const
 	{
-		return glGetUniformLocation(*mShaderProg.get(), name);
+		return glGetUniformLocation(mShaderProg.get(), name);
 	}
 
 	GLShaderProgram::operator GLuint() const
 	{
-		return *mShaderProg.get();
+		return mShaderProg.get();
 	}
 
 	void GLShaderProgram::setUniformInt(const char* name, const int i)

@@ -1,15 +1,25 @@
-#ifndef RENDER_UTILS_BUFFER_OBJECT_H
-#define RENDER_UTILS_BUFFER_OBJECT_H
+#pragma once
 
 #include <memory>
-#include "../OpenGL.h"
+#include "../rendering/OpenGL.h"
 
 namespace rend
 {
+    struct GLBufferDeleter
+    {
+        typedef GLuint pointer;
+
+        void operator()(GLuint buffer)
+        {
+            glDeleteBuffers(1, &buffer);
+        }
+    };
+
     class GLBufferObject
     {
     public:
-        GLBufferObject();
+        GLBufferObject(const void* data = nullptr,
+            size_t size = 0, GLenum usage = GL_STATIC_DRAW);
 
         operator GLuint() const;
 
@@ -17,23 +27,12 @@ namespace rend
         GLuint createBuffer();
 
     private:
-        std::shared_ptr<GLuint> mSharedHandle;
+        std::unique_ptr<GLuint, GLBufferDeleter> mBuffer;
     };
 
     inline GLBufferObject::operator GLuint() const
     {
-        return *mSharedHandle;
-    }
-
-    inline void vboDeleter(GLuint vbo)
-    {
-        glDeleteBuffers(1, &vbo);
-    };
-
-    inline GLBufferObject::GLBufferObject()
-        : mSharedHandle(new GLuint(createBuffer()), [&](GLuint* u) { vboDeleter(*u); delete u; })
-    {
-
+        return mBuffer.get();
     }
 
     inline GLuint GLBufferObject::createBuffer()
@@ -44,6 +43,14 @@ namespace rend
 
         return id;
     }
-}
 
-#endif /* RENDER_UTILS_BUFFER_OBJECT_H */
+    inline GLBufferObject::GLBufferObject(const void* data, size_t size, GLenum usage)
+        : mBuffer(createBuffer())
+    {
+        if (data != nullptr)
+        {
+            glBindBuffer(GL_ARRAY_BUFFER, mBuffer.get());
+            glBufferData(GL_ARRAY_BUFFER, size, data, usage);
+        }
+    }
+}
