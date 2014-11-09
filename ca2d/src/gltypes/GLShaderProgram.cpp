@@ -6,14 +6,10 @@
 #include <malloc.h>
 #include <glm/glm.hpp>
 
-namespace rend
+namespace ca2d
 {
-	void GLShaderProgramDeleter(GLuint* shader)
-	{
-		glDeleteProgram(*shader);
-		delete shader;
-	};
 
+    /* Creates and links a shader program with a vertex and fragment shader */
 	GLShaderProgram::GLShaderProgram(const char* vs_filename, const char* fs_filename)
         : mShaderProg(glCreateProgram())
 	{
@@ -32,8 +28,9 @@ namespace rend
 
 		// Link program
 		glLinkProgram(mShaderProg.get());
-	}
+    }
 
+    /* Unbinds this shader if it is bound, and destroys it */
 	GLShaderProgram::~GLShaderProgram()
 	{
         if (mShaderProg != nullptr)
@@ -48,26 +45,31 @@ namespace rend
         }
 	}
 
+    /* Binds this shader program */
 	void GLShaderProgram::bind() const
 	{
 		glUseProgram(mShaderProg.get());
 	}
 
+    /* Unbinds this shader program */
 	void GLShaderProgram::unbind() const
 	{
 		glUseProgram(0);
 	}
 
+    /* Whether this shader program has compiled and linked successfully */
 	bool GLShaderProgram::isValid() const
 	{
 		return mShaderProg.get() != 0;
 	}
 
+    /* Get the location of an attribute */
 	GLint GLShaderProgram::getAttributeLocation(const char* name) const
 	{
 		return glGetAttribLocation(mShaderProg.get(), name);
 	}
 
+    /* Enable an attribute and get its location */
 	GLint GLShaderProgram::enableAttribute(const char* name)
 	{
 		GLint location = getAttributeLocation(name);
@@ -84,6 +86,7 @@ namespace rend
 		return location;
 	}
 
+    /* Disable an attribute */
 	void GLShaderProgram::disableAttribute(const char* name)
 	{
 		GLint location = getAttributeLocation(name);
@@ -98,52 +101,48 @@ namespace rend
 		}
 	}
 
+    /* Get the location of a uniform */
 	GLint GLShaderProgram::getUniformLocation(const char* name) const
 	{
 		return glGetUniformLocation(mShaderProg.get(), name);
 	}
 
-	GLShaderProgram::operator GLuint() const
-	{
-		return mShaderProg.get();
-	}
-
+    /* Upload an int uniform */
 	void GLShaderProgram::setUniformInt(const char* name, const int i)
 	{
 		int loc = getUniformLocation(name);
 		glUniform1i(loc, i);
 	}
 
+    /* Upload a float uniform */
 	void GLShaderProgram::setUniformFloat(const char* name, const float f)
 	{
 		int loc = getUniformLocation(name);
 		glUniform1f(loc, f);
 	}
 
-	void GLShaderProgram::setUniformDouble(const char* name, const double d)
-	{
-		int loc = getUniformLocation(name);
-		//glUniform1d(loc, d);
-	}
-
+    /* Upload a vec2 uniform */
 	void GLShaderProgram::setUniformVector(const char* name, const glm::vec2& vector)
 	{
 		int loc = getUniformLocation(name);
 		glUniform2f(loc, vector.x, vector.y);
 	}
 
+    /* Upload a vec3 uniform */
 	void GLShaderProgram::setUniformVector(const char* name, const glm::vec3& vector)
 	{
 		int loc = getUniformLocation(name);
 		glUniform3f(loc, vector.x, vector.y, vector.z);
 	}
 
+    /* Upload a vec4 uniform */
 	void GLShaderProgram::setUniformVector(const char* name, const glm::vec4& vector)
 	{
 		int loc = getUniformLocation(name);
 		glUniform4f(loc, vector.x, vector.y, vector.z, vector.w);
 	}
-	
+
+    /* Upload a mat4 uniform */
 	void GLShaderProgram::setUniformMatrix(const char* name, const glm::mat4& matrix)
 	{
 		int loc = getUniformLocation(name);

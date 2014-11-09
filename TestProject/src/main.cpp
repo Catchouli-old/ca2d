@@ -21,9 +21,9 @@ void render()
     const int verticesSize = sizeof(vertices);
 
     // Shaders
-    static rend::GLShaderProgram shaderProgram("shaders/simplept.vs.glsl", "shaders/simplept.fs.glsl");
-    static rend::GLTexture2D texture("pachu.png");
-    static rend::GLBufferObject vbo(vertices, verticesSize);
+    static ca2d::GLShaderProgram shaderProgram("shaders/simplept.vs.glsl", "shaders/simplept.fs.glsl");
+    static ca2d::GLTexture2D texture("pachu.png");
+    static ca2d::GLBufferObject vbo(vertices, verticesSize);
 
     // FPS counters
     static uint32_t lastFpsUpdate = SDL_GetTicks();

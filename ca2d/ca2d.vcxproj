@@ -24,7 +24,7 @@
     <ClInclude Include="include\gltypes\GLTexture2D.h" />
     <ClInclude Include="include\gltypes\GLBufferObject.h" />
     <ClInclude Include="include\maths\Colour.h" />
-    <ClInclude Include="include\maths\MathsUtils.h" />
+    <ClInclude Include="include\maths\Maths.h" />
     <ClInclude Include="include\rendering\OpenGL.h" />
     <ClInclude Include="include\rendering\Camera.h" />
     <ClInclude Include="include\rendering\Vertex.h" />
@@ -35,6 +35,9 @@
     <ClCompile Include="src\gltypes\GLShader.cpp" />
     <ClCompile Include="src\gltypes\GLShaderProgram.cpp" />
     <ClCompile Include="src\gltypes\GLTexture2D.cpp" />
+    <ClCompile Include="src\maths\Colour.cpp" />
+    <ClCompile Include="src\maths\Maths.cpp" />
+    <ClCompile Include="src\resources\File.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{9A354D11-CD60-48E6-8E58-1A60CE100F31}</ProjectGuid>

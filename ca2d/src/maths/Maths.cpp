@@ -1,16 +1,7 @@
-#pragma once
+#include "maths/Maths.h"
 
-#include <algorithm>
-#include <cstdint>
-
-namespace rend
+namespace ca2d
 {
-    /* Definitions */
-
-    /* Clamp a value */
-    template <typename T>
-    const T& clamp(const T& a, const T& min, const T& max);
-
     /* Convert a 0..1 float to a uint8 */
     uint8_t u8fromfloat(float f)
     {
@@ -29,14 +20,5 @@ namespace rend
         union { float f; uint32_t i; } u;
         u.f = 32768.0f; u.i |= i;
         return (u.f - 32768.0f) * (256.0f / 255.0f);
-    }
-
-    /* Inline implementations */
-
-    /* Clamp a value */
-    template <typename T>
-    inline const T& clamp(const T& a, const T& min, const T& max)
-    {
-        return std::max(min, std::min(max, a));
     }
 }

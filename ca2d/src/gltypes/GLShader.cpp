@@ -2,8 +2,10 @@
 
 #include "resources/File.h"
 
-namespace rend
+namespace ca2d
 {
+
+    /* Compile a glsl shader */
 	bool compileShader(GLuint shader, const char* filename, const char* source)
 	{
 		GLint compiled;
@@ -41,6 +43,7 @@ namespace rend
 		return true;
     }
 
+    /* Creates and attemptps to compile a glsl shader */
     GLShader::GLShader(GLuint type, const char* filename)
         : mShader(glCreateShader(type))
     {
@@ -48,7 +51,7 @@ namespace rend
         File file(filename);
 
         // Return if file read failed
-        if (!file.isLoaded())
+        if (!file.exists())
         {
             mIsValid = false;
 

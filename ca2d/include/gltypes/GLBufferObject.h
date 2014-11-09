@@ -3,8 +3,9 @@
 #include <memory>
 #include "../rendering/OpenGL.h"
 
-namespace rend
+namespace ca2d
 {
+    /* The deleter in charge of opengl buffer handles */
     struct GLBufferDeleter
     {
         typedef GLuint pointer;
@@ -18,23 +19,37 @@ namespace rend
     class GLBufferObject
     {
     public:
+
+        /* Create an opengl buffer and optionally upload data to it */
         GLBufferObject(const void* data = nullptr,
             size_t size = 0, GLenum usage = GL_STATIC_DRAW);
 
+        /* Upload data to the buffer */
+        void upload(const void* data = nullptr,
+            size_t size = 0, GLenum usage = GL_STATIC_DRAW);
+
+        /* Allow objects of this class to be passed directly to opengl calls */
         operator GLuint() const;
 
     protected:
-        GLuint createBuffer();
+
+        /* Create a buffer and return an ID */
+        static GLuint createBuffer();
 
     private:
+
+        /* The smart pointer responsible for ownership of the buffer handle */
         std::unique_ptr<GLuint, GLBufferDeleter> mBuffer;
+
     };
 
+    /* Allow objects of this class to be passed directly to opengl calls */
     inline GLBufferObject::operator GLuint() const
     {
         return mBuffer.get();
     }
 
+    /* Create a buffer and return an ID */
     inline GLuint GLBufferObject::createBuffer()
     {
         GLuint id;
@@ -42,15 +57,5 @@ namespace rend
         glGenBuffers(1, &id);
 
         return id;
-    }
-
-    inline GLBufferObject::GLBufferObject(const void* data, size_t size, GLenum usage)
-        : mBuffer(createBuffer())
-    {
-        if (data != nullptr)
-        {
-            glBindBuffer(GL_ARRAY_BUFFER, mBuffer.get());
-            glBufferData(GL_ARRAY_BUFFER, size, data, usage);
-        }
     }
 }
