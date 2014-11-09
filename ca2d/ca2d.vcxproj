@@ -23,6 +23,7 @@
     <ClInclude Include="include\gltypes\GLShaderProgram.h" />
     <ClInclude Include="include\gltypes\GLTexture2D.h" />
     <ClInclude Include="include\gltypes\GLBufferObject.h" />
+    <ClInclude Include="include\scripting\LuaPrompt.h" />
     <ClInclude Include="include\maths\Colour.h" />
     <ClInclude Include="include\maths\Maths.h" />
     <ClInclude Include="include\rendering\OpenGL.h" />
@@ -38,6 +39,7 @@
     <ClCompile Include="src\maths\Colour.cpp" />
     <ClCompile Include="src\maths\Maths.cpp" />
     <ClCompile Include="src\resources\File.cpp" />
+    <ClCompile Include="src\scripting\LuaPrompt.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{9A354D11-CD60-48E6-8E58-1A60CE100F31}</ProjectGuid>
@@ -115,7 +117,7 @@
       <MultiProcessorCompilation>
       </MultiProcessorCompilation>
       <AdditionalIncludeDirectories>include;$(SolutionDir)dep/include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_MBCS;GLM_FORCE_RADIANS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_MBCS;GLM_FORCE_RADIANS;MAIN_COMPILATION;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -139,7 +141,7 @@
       <MultiProcessorCompilation>
       </MultiProcessorCompilation>
       <AdditionalIncludeDirectories>include;$(SolutionDir)dep/include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_MBCS;GLM_FORCE_RADIANS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_MBCS;GLM_FORCE_RADIANS;MAIN_COMPILATION;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -165,7 +167,8 @@
       <MultiProcessorCompilation>
       </MultiProcessorCompilation>
       <AdditionalIncludeDirectories>include;$(SolutionDir)dep/include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_MBCS;GLM_FORCE_RADIANS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_MBCS;GLM_FORCE_RADIANS;MAIN_COMPILATION;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -199,7 +202,7 @@
       <MultiProcessorCompilation>
       </MultiProcessorCompilation>
       <AdditionalIncludeDirectories>include;$(SolutionDir)dep/include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_MBCS;GLM_FORCE_RADIANS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_MBCS;GLM_FORCE_RADIANS;MAIN_COMPILATION;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

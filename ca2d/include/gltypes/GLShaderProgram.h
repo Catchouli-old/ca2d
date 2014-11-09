@@ -60,7 +60,6 @@ namespace ca2d
 		void setUniformVector(const char* name, const glm::vec3& vector);
 		void setUniformVector(const char* name, const glm::vec4& vector);
 		void setUniformMatrix(const char* name, const glm::mat4& matrix);
-		void setUniformTexture(const char* name, const GLTexture2D& texture);
 
         /* Allows this object to be passed into opengl calls directly */
 		operator GLuint() const;

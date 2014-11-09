@@ -18,6 +18,15 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\Component.h" />
+    <ClInclude Include="include\luafuncs.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Component.cpp" />
+    <ClCompile Include="src\luatest.cpp" />
+    <ClCompile Include="src\test.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{DF4C1421-FDBC-4B88-9E54-E227DDE70013}</ProjectGuid>
     <RootNamespace>SDLTest</RootNamespace>
@@ -87,12 +96,14 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>include;$(SolutionDir)ca2d/include;$(SolutionDir)dep/include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_MBCS;GLM_FORCE_RADIANS;MAIN_COMPILATION;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)dep/lib/$(Platform)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>ca2d.lib;SDL.lib;SDL_image.lib;SDLmain.lib;glew32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>lua52.lib;ca2d.lib;SDL.lib;SDL_image.lib;SDLmain.lib;glew32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
+      <ShowProgress>NotSet</ShowProgress>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /E /Y "$(SolutionDir)dep/bin/$(Platform)" "$(OutDir)"
@@ -105,12 +116,14 @@ xcopy /E /Y "$(SolutionDir)dist" "$(OutDir)"</Command>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>include;$(SolutionDir)ca2d/include;$(SolutionDir)dep/include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_MBCS;GLM_FORCE_RADIANS;MAIN_COMPILATION;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)dep/lib/$(Platform)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>ca2d.lib;SDL.lib;SDL_image.lib;SDLmain.lib;glew32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>lua52.lib;ca2d.lib;SDL.lib;SDL_image.lib;SDLmain.lib;glew32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
+      <ShowProgress>NotSet</ShowProgress>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /E /Y "$(SolutionDir)dep/bin/$(Platform)" "$(OutDir)"
@@ -125,14 +138,17 @@ xcopy /E /Y "$(SolutionDir)dist" "$(OutDir)"</Command>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>include;$(SolutionDir)ca2d/include;$(SolutionDir)dep/include</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <PreprocessorDefinitions>_MBCS;GLM_FORCE_RADIANS;MAIN_COMPILATION;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)dep/lib/$(Platform)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>ca2d.lib;SDL.lib;SDL_image.lib;SDLmain.lib;glew32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>lua52.lib;ca2d.lib;SDL.lib;SDL_image.lib;SDLmain.lib;glew32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
+      <ShowProgress>NotSet</ShowProgress>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /E /Y "$(SolutionDir)dep/bin/$(Platform)" "$(OutDir)"
@@ -147,23 +163,22 @@ xcopy /E /Y "$(SolutionDir)dist" "$(OutDir)"</Command>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>include;$(SolutionDir)ca2d/include;$(SolutionDir)dep/include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_MBCS;GLM_FORCE_RADIANS;MAIN_COMPILATION;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)dep/lib/$(Platform)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>ca2d.lib;SDL.lib;SDL_image.lib;SDLmain.lib;glew32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>lua52.lib;ca2d.lib;SDL.lib;SDL_image.lib;SDLmain.lib;glew32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
+      <ShowProgress>NotSet</ShowProgress>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /E /Y "$(SolutionDir)dep/bin/$(Platform)" "$(OutDir)"
 xcopy /E /Y "$(SolutionDir)dist" "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="src\main.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

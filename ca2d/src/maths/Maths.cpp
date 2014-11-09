@@ -2,6 +2,8 @@
 
 namespace ca2d
 {
+    col_t i;
+
     /* Convert a 0..1 float to a uint8 */
     uint8_t u8fromfloat(float f)
     {

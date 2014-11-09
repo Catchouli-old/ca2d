@@ -8,7 +8,6 @@ namespace ca2d
 {
     /* Implements a colour class, inheriting from vec4 for built in operators and such */
     struct Colour
-        : public glm::vec4
     {
 
         /* Create default colour (black) */
@@ -20,6 +19,8 @@ namespace ca2d
         /* Convert colour to a 32-bit unsigned integer */
         uint32_t toUintARGB() const;
 
+        float r, g, b, a;
+
     };
 
     /* Convert colour to a 32-bit unsigned integer */
@@ -30,4 +31,9 @@ namespace ca2d
              | u8fromfloat(g) << 8
              | u8fromfloat(b);
     }
+
+    struct Dumb
+    {
+
+    };
 }

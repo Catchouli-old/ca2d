@@ -30,3 +30,4 @@
 *.opensdf
 /bin
 /obj
+/tools

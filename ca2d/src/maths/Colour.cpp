@@ -10,7 +10,7 @@ namespace ca2d
 
     /* Create colour from components */
     Colour::Colour(float r, float g, float b, float a)
-        : glm::vec4(r, g, b, a)
+        : r(r), g(g), b(b), a(a)
     {
 
     }
