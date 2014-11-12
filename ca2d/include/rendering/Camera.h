@@ -47,7 +47,7 @@ namespace ca2d
         /** Get the view matrix for this camera */
         const glm::mat4& getView() const;
 
-        /** Get a combined projection * view matrix for this camera */
+        /** Get a combined projection-view matrix for this camera */
         const glm::mat4& getCombined() const;
 
     protected:
@@ -71,62 +71,62 @@ namespace ca2d
         glm::quat mRotation;
 
     };
-    
-    /** Get the position of the camera in world space */
+
+    /** Get the position of this camera */
     inline const glm::vec3& Camera::getPosition() const
     {
         return mPosition;
     }
 
-    /** Set the position of the camera in world space */
+    /** Set the position of this camera */
     inline void Camera::setPosition(const glm::vec3& position)
     {
         mPosition = position;
     }
 
-    /** Get the rotation of the camera */
+    /** Get the rotation of this camera */
     inline const glm::quat& Camera::getRotation() const
     {
         return mRotation;
     }
 
-    /** Set the rotation of the camera */
+    /** Set the rotation of this camera */
     inline void Camera::setRotation(const glm::quat& rotation)
     {
         mRotation = rotation;
     }
 
-    /** Get the forward vector for the camera */
+    /** Get the forward vector for this camera */
     inline const glm::vec3& Camera::getForward() const
     {
         return mForward;
     }
 
-    /** Get the up vector for the camera */
+    /** Get the up vector for this camera */
     inline const glm::vec3& Camera::getUp() const
     {
         return mUp;
     }
 
-    /** Get the left vector for the camera */
+    /** Get the left vector for this camera */
     inline const glm::vec3& Camera::getRight() const
     {
         return mRight;
     }
 
-    /** Get the projection matrix of the camera */
+    /** Get the projection matrix of this camera */
     inline const glm::mat4& Camera::getProjection() const
     {
         return mProjection;
     }
 
-    /** Get the view matrix of the camera */
+    /** Get the view matrix of this camera */
     inline const glm::mat4& Camera::getView() const
     {
         return mView;
     }
 
-    /** Get a combined projection-view matrix for the camera */
+    /** Get a combined projection-view matrix for this camera */
     inline const glm::mat4& Camera::getCombined() const
     {
         return mCombined;
