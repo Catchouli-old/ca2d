@@ -6,6 +6,7 @@
 
 namespace ca2d
 {
+    /* A camera class */
     class Camera
     {
     public:

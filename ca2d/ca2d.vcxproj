@@ -31,7 +31,6 @@
     <ClInclude Include="include\scripting\LuaEngine.h" />
     <ClInclude Include="include\maths\Colour.h" />
     <ClInclude Include="include\maths\Maths.h" />
-    <ClInclude Include="include\rendering\OpenGL.h" />
     <ClInclude Include="include\rendering\Camera.h" />
     <ClInclude Include="include\rendering\Vertex.h" />
     <ClInclude Include="include\resources\File.h" />

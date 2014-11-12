@@ -1,5 +1,7 @@
 #include "app/TestApp.h"
 
+#include "app/Components.h"
+
 int main(int argc, char** argv)
 {
     TestApp app;

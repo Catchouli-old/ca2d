@@ -110,8 +110,7 @@
       </EntryPointSymbol>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /E /Y "$(SolutionDir)dep/windows/bin/$(Platform)" "$(OutDir)"
-xcopy /E /Y "$(SolutionDir)dist" "$(OutDir)"</Command>
+      <Command>xcopy /E /Y "$(SolutionDir)dep/windows/bin/$(Platform)" "$(OutDir)"</Command>
     </PostBuildEvent>
     <PreLinkEvent>
       <Command>
@@ -142,8 +141,7 @@ glue</Command>
       </EntryPointSymbol>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /E /Y "$(SolutionDir)dep/windows/bin/$(Platform)" "$(OutDir)"
-xcopy /E /Y "$(SolutionDir)dist" "$(OutDir)"</Command>
+      <Command>xcopy /E /Y "$(SolutionDir)dep/windows/bin/$(Platform)" "$(OutDir)"</Command>
     </PostBuildEvent>
     <PreLinkEvent>
       <Command>
@@ -177,8 +175,7 @@ glue</Command>
       </EntryPointSymbol>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /E /Y "$(SolutionDir)dep/windows/bin/$(Platform)" "$(OutDir)"
-xcopy /E /Y "$(SolutionDir)dist" "$(OutDir)"</Command>
+      <Command>xcopy /E /Y "$(SolutionDir)dep/windows/bin/$(Platform)" "$(OutDir)"</Command>
     </PostBuildEvent>
     <PreLinkEvent>
       <Command>
@@ -212,8 +209,7 @@ glue</Command>
       </EntryPointSymbol>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /E /Y "$(SolutionDir)dep/windows/bin/$(Platform)" "$(OutDir)"
-xcopy /E /Y "$(SolutionDir)dist" "$(OutDir)"</Command>
+      <Command>xcopy /E /Y "$(SolutionDir)dep/windows/bin/$(Platform)" "$(OutDir)"</Command>
     </PostBuildEvent>
     <PreLinkEvent>
       <Command>

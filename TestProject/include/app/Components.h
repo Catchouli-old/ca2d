@@ -9,7 +9,76 @@
 #include <string>
 #include <typeindex>
 
+#include <lua.hpp>
+
 using namespace ca2d;
+
+struct luaref_t
+{
+    luaref_t(int ref, lua_State* luaState)
+        : ref(ref), luaState(luaState)
+    {
+
+    }
+
+    int ref;
+    lua_State* luaState;
+};
+
+#ifdef SWIG
+
+%typemap(in) luaref_t {
+    lua_pushvalue(L, 1);
+    $1 = luaref_t(luaL_ref(L, LUA_REGISTRYINDEX), L);
+}
+
+#endif
+
+inline void addComponent(luaref_t ref)
+{
+    printf("got lua ref: %d\n", ref.ref);
+
+    lua_State* luaState = ref.luaState;
+
+    // Get lua table on top of stack
+    lua_rawgeti(luaState, LUA_REGISTRYINDEX, ref.ref);
+
+    bool istable = lua_istable(luaState, -1);
+
+    if (!istable)
+    {
+        fprintf(stderr, "not a table\n");
+
+        // Pop table
+        lua_pop(luaState, 1);
+
+        return;
+    }
+
+    lua_pushstring(luaState, "test");
+    lua_gettable(luaState, -2);
+
+    if (!lua_isfunction(luaState, -1))
+    {
+        fprintf(stderr, "no such function: test\n");
+
+        // Pop value and table
+        lua_pop(luaState, 2);
+
+        return;
+    }
+
+    if (lua_pcall(luaState, 0, 0, 0) != 0)
+    {
+        fprintf(stderr, "error running function: %s\n", lua_tostring(luaState, -1));
+
+        // Pop error
+        lua_pop(luaState, 1);
+    }
+
+    // Pop table
+    lua_pop(luaState, 1);
+}
 
 struct Position
     : public Component
