@@ -6,7 +6,11 @@
 
 namespace ca2d
 {
-    /* A camera class */
+    /**
+    *   \Brief An abstract camera class
+    *   
+    *   An abstract camera class that can be extended to customise camera behaviour
+    */
     class Camera
     {
     public:
