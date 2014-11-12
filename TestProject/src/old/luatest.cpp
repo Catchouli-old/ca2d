@@ -10,22 +10,20 @@
 #include <lauxlib.h>
 #include <swigluaruntime.h>
 
-#include "luafuncs.h"
 #include "Component.h"
 
 #include "maths/Colour.h"
 #include "maths/Maths.h"
 #include "scripting/LuaPrompt.h"
 
+void error(void*, void*, const void*)
+{
+}
+
 int main(int argc, char** argv)
 {
     bool running = true;
-
-    DEFINE_COMPONENT("Transform", TransformComponent);
-    DEFINE_COMPONENT("Colour", ColourComponent);
-
-    addComponent("Transform");
-
+    
     // Initialise lua state
     lua_State* luaState = luaL_newstate();
 
@@ -37,12 +35,6 @@ int main(int argc, char** argv)
     {
         error(luaState, "%s", lua_tostring(luaState, -1));
     }
-
-    // Read values
-    int width = getInt(luaState, "width");
-    int height = getInt(luaState, "height");
-
-    printf("width: %d, height: %d\nelements: %d\n", width, height, lua_gettop(luaState));
 
     ColourComponent col;
     col.r = 1;
@@ -61,7 +53,7 @@ int main(int argc, char** argv)
     lua_setglobal(luaState, "col");
 
     // Do lua prompt in separate thread
-    std::thread luaThread(ca2d::luaprompt, luaState, running);
+    std::thread luaThread(ca2d::luaprompt, luaState);
 
     // Main loop
     while (running)

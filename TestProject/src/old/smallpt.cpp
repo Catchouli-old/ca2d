@@ -2,7 +2,8 @@
 #include <fstream>
 #include <sstream>
 
-#include <rendering/OpenGL.h>
+#include <SDL/SDL.h>
+#include <GL/glew.h>
 
 #include <rendering/Vertex.h>
 #include <gltypes/GLShaderProgram.h>

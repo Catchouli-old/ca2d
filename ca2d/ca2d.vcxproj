@@ -19,11 +19,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\app\Component.h" />
+    <ClInclude Include="include\app\Entity.h" />
+    <ClInclude Include="include\app\Game.h" />
+    <ClInclude Include="include\app\OpenGLWindow.h" />
     <ClInclude Include="include\gltypes\GLShader.h" />
     <ClInclude Include="include\gltypes\GLShaderProgram.h" />
     <ClInclude Include="include\gltypes\GLTexture2D.h" />
     <ClInclude Include="include\gltypes\GLBufferObject.h" />
-    <ClInclude Include="include\scripting\LuaPrompt.h" />
+    <ClInclude Include="include\rendering\OpenGL.h" />
+    <ClInclude Include="include\scripting\LuaEngine.h" />
     <ClInclude Include="include\maths\Colour.h" />
     <ClInclude Include="include\maths\Maths.h" />
     <ClInclude Include="include\rendering\OpenGL.h" />
@@ -32,6 +37,8 @@
     <ClInclude Include="include\resources\File.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\app\Game.cpp" />
+    <ClCompile Include="src\app\OpenGLWindow.cpp" />
     <ClCompile Include="src\gltypes\GLBufferObject.cpp" />
     <ClCompile Include="src\gltypes\GLShader.cpp" />
     <ClCompile Include="src\gltypes\GLShaderProgram.cpp" />
@@ -39,7 +46,7 @@
     <ClCompile Include="src\maths\Colour.cpp" />
     <ClCompile Include="src\maths\Maths.cpp" />
     <ClCompile Include="src\resources\File.cpp" />
-    <ClCompile Include="src\scripting\LuaPrompt.cpp" />
+    <ClCompile Include="src\scripting\LuaEngine.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{9A354D11-CD60-48E6-8E58-1A60CE100F31}</ProjectGuid>
@@ -116,8 +123,10 @@
       <SDLCheck>true</SDLCheck>
       <MultiProcessorCompilation>
       </MultiProcessorCompilation>
-      <AdditionalIncludeDirectories>include;$(SolutionDir)dep/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;$(SolutionDir)dep/include;$(SolutionDir)dep/windows/include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;GLM_FORCE_RADIANS;MAIN_COMPILATION;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -140,8 +149,10 @@
       <SDLCheck>true</SDLCheck>
       <MultiProcessorCompilation>
       </MultiProcessorCompilation>
-      <AdditionalIncludeDirectories>include;$(SolutionDir)dep/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;$(SolutionDir)dep/include;$(SolutionDir)dep/windows/include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;GLM_FORCE_RADIANS;MAIN_COMPILATION;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -166,9 +177,10 @@
       <SDLCheck>true</SDLCheck>
       <MultiProcessorCompilation>
       </MultiProcessorCompilation>
-      <AdditionalIncludeDirectories>include;$(SolutionDir)dep/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;$(SolutionDir)dep/include;$(SolutionDir)dep/windows/include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;GLM_FORCE_RADIANS;MAIN_COMPILATION;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <CompileAsWinRT>false</CompileAsWinRT>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -201,8 +213,10 @@
       <SDLCheck>true</SDLCheck>
       <MultiProcessorCompilation>
       </MultiProcessorCompilation>
-      <AdditionalIncludeDirectories>include;$(SolutionDir)dep/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;$(SolutionDir)dep/include;$(SolutionDir)dep/windows/include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;GLM_FORCE_RADIANS;MAIN_COMPILATION;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

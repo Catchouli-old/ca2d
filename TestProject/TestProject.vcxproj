@@ -19,13 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\Component.h" />
-    <ClInclude Include="include\luafuncs.h" />
+    <ClInclude Include="include\app\Components.h" />
+    <ClInclude Include="include\app\TestApp.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Component.cpp" />
-    <ClCompile Include="src\luatest.cpp" />
-    <ClCompile Include="src\test.cpp" />
+    <ClCompile Include="..\swig\lua_wrap.cxx" />
+    <ClCompile Include="src\app\TestApp.cpp" />
+    <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{DF4C1421-FDBC-4B88-9E54-E227DDE70013}</ProjectGuid>
@@ -95,40 +95,64 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>include;$(SolutionDir)ca2d/include;$(SolutionDir)dep/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;$(SolutionDir)ca2d/include;$(SolutionDir)dep/include;$(SolutionDir)dep/windows/include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;GLM_FORCE_RADIANS;MAIN_COMPILATION;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <CompileAsWinRT>false</CompileAsWinRT>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)dep/lib/$(Platform)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>lua52.lib;ca2d.lib;SDL.lib;SDL_image.lib;SDLmain.lib;glew32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)dep/windows/lib/$(Platform)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ca2d.lib;SDL.lib;SDLmain.lib;opengl32.lib;glew32.lib;SDL_image.lib;lua52.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
       <ShowProgress>NotSet</ShowProgress>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /E /Y "$(SolutionDir)dep/bin/$(Platform)" "$(OutDir)"
+      <Command>xcopy /E /Y "$(SolutionDir)dep/windows/bin/$(Platform)" "$(OutDir)"
 xcopy /E /Y "$(SolutionDir)dist" "$(OutDir)"</Command>
     </PostBuildEvent>
+    <PreLinkEvent>
+      <Command>
+      </Command>
+    </PreLinkEvent>
+    <PreBuildEvent>
+      <Command>cd $(SolutionDir)\swig
+glue</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>include;$(SolutionDir)ca2d/include;$(SolutionDir)dep/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;$(SolutionDir)ca2d/include;$(SolutionDir)dep/include;$(SolutionDir)dep/windows/include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;GLM_FORCE_RADIANS;MAIN_COMPILATION;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <CompileAsWinRT>false</CompileAsWinRT>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)dep/lib/$(Platform)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>lua52.lib;ca2d.lib;SDL.lib;SDL_image.lib;SDLmain.lib;glew32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)dep/windows/lib/$(Platform)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ca2d.lib;SDL.lib;SDLmain.lib;opengl32.lib;glew32.lib;SDL_image.lib;lua52.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
       <ShowProgress>NotSet</ShowProgress>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /E /Y "$(SolutionDir)dep/bin/$(Platform)" "$(OutDir)"
+      <Command>xcopy /E /Y "$(SolutionDir)dep/windows/bin/$(Platform)" "$(OutDir)"
 xcopy /E /Y "$(SolutionDir)dist" "$(OutDir)"</Command>
     </PostBuildEvent>
+    <PreLinkEvent>
+      <Command>
+      </Command>
+    </PreLinkEvent>
+    <PreBuildEvent>
+      <Command>cd $(SolutionDir)\swig
+glue</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -137,23 +161,33 @@ xcopy /E /Y "$(SolutionDir)dist" "$(OutDir)"</Command>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>include;$(SolutionDir)ca2d/include;$(SolutionDir)dep/include</AdditionalIncludeDirectories>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalIncludeDirectories>include;$(SolutionDir)ca2d/include;$(SolutionDir)dep/include;$(SolutionDir)dep/windows/include</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <PreprocessorDefinitions>_MBCS;GLM_FORCE_RADIANS;MAIN_COMPILATION;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)dep/lib/$(Platform)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>lua52.lib;ca2d.lib;SDL.lib;SDL_image.lib;SDLmain.lib;glew32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)dep/windows/lib/$(Platform)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ca2d.lib;SDL.lib;SDLmain.lib;opengl32.lib;glew32.lib;SDL_image.lib;lua52.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
       <ShowProgress>NotSet</ShowProgress>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /E /Y "$(SolutionDir)dep/bin/$(Platform)" "$(OutDir)"
+      <Command>xcopy /E /Y "$(SolutionDir)dep/windows/bin/$(Platform)" "$(OutDir)"
 xcopy /E /Y "$(SolutionDir)dist" "$(OutDir)"</Command>
     </PostBuildEvent>
+    <PreLinkEvent>
+      <Command>
+      </Command>
+    </PreLinkEvent>
+    <PreBuildEvent>
+      <Command>cd $(SolutionDir)\swig
+glue</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -162,22 +196,33 @@ xcopy /E /Y "$(SolutionDir)dist" "$(OutDir)"</Command>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>include;$(SolutionDir)ca2d/include;$(SolutionDir)dep/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;$(SolutionDir)ca2d/include;$(SolutionDir)dep/include;$(SolutionDir)dep/windows/include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;GLM_FORCE_RADIANS;MAIN_COMPILATION;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)dep/lib/$(Platform)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>lua52.lib;ca2d.lib;SDL.lib;SDL_image.lib;SDLmain.lib;glew32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)dep/windows/lib/$(Platform)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ca2d.lib;SDL.lib;SDLmain.lib;opengl32.lib;glew32.lib;SDL_image.lib;lua52.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
       <ShowProgress>NotSet</ShowProgress>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /E /Y "$(SolutionDir)dep/bin/$(Platform)" "$(OutDir)"
+      <Command>xcopy /E /Y "$(SolutionDir)dep/windows/bin/$(Platform)" "$(OutDir)"
 xcopy /E /Y "$(SolutionDir)dist" "$(OutDir)"</Command>
     </PostBuildEvent>
+    <PreLinkEvent>
+      <Command>
+      </Command>
+    </PreLinkEvent>
+    <PreBuildEvent>
+      <Command>cd $(SolutionDir)\swig
+glue</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

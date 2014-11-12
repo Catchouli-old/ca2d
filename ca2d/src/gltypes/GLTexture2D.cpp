@@ -1,6 +1,7 @@
 #include "gltypes/GLTexture2D.h"
 
 #include <stdio.h>
+#include <SDL/SDL_image.h>
 
 #include "rendering/OpenGL.h"
 

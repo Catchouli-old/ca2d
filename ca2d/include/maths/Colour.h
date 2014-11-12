@@ -31,9 +31,4 @@ namespace ca2d
              | u8fromfloat(g) << 8
              | u8fromfloat(b);
     }
-
-    struct Dumb
-    {
-
-    };
 }

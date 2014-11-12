@@ -17,10 +17,10 @@ for /f "delims==" %%g in ('dir /s/b ..\TestProject\*.h') do @echo %%include "%%g
 %SWIG% -c++ -lua %OUT_INTERFACE%
 
 : hack to get lua_wrap.cxx working with lua c++ built libs
-@echo #include ^<lua.h^> >> temp.cxx
-@echo #include ^<lualib.h^> >> temp.cxx
-@echo #include ^<lauxlib.h^> >> temp.cxx
+:@echo #include ^<lua.h^> >> temp.cxx
+:@echo #include ^<lualib.h^> >> temp.cxx
+:@echo #include ^<lauxlib.h^> >> temp.cxx
 
-type lua_wrap.cxx >> temp.cxx
-del lua_wrap.cxx
-ren temp.cxx lua_wrap.cxx
+:type lua_wrap.cxx >> temp.cxx
+:del lua_wrap.cxx
+:ren temp.cxx lua_wrap.cxx
