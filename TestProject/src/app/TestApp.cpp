@@ -11,7 +11,7 @@
 
 #include "app/Components.h"
 
-/* Create default TestApp */
+/** Create default TestApp */
 TestApp::TestApp()
     : ca2d::Game(800, 600)
 {
@@ -19,13 +19,13 @@ TestApp::TestApp()
     mLuaEngine.dofile("scene.lua");
 }
 
-/* Clean up application resources */
+/** Clean up application resources */
 TestApp::~TestApp()
 {
 
 }
 
-/* Update TestApp */
+/** Update TestApp */
 void TestApp::update(double dt)
 {
     Game::update(dt);
@@ -43,7 +43,7 @@ void TestApp::update(double dt)
     }
 }
 
-/* Render TestApp */
+/** Render TestApp */
 void TestApp::render()
 {
     static float w = (float)SDL_GetVideoSurface()->w;

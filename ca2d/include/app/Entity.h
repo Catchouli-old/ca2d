@@ -12,65 +12,65 @@ namespace ca2d
     {
     public:
 
-        /* Fail to add a component type to the entity - to prevent blank swig calls */
+        /** Fail to add a component type to the entity - to prevent blank swig calls */
         void addComponent();
 
-        /* Add a component to the entity */
+        /** Add a component to the entity */
         template <typename T>
         T* addComponent();
 
-        /* Add a component to the entity */
+        /** Add a component to the entity */
         template <typename T, typename... Args>
         T* addComponent(Args... args);
 
-        /* Add a component to the entity */
+        /** Add a component to the entity */
         template <typename T>
         T* addComponent(const T& other);
 
-        /* Fail to get a component type to the entity - to prevent blank swig calls */
+        /** Fail to get a component type to the entity - to prevent blank swig calls */
         void getComponent();
 
-        /* Get a component from the entity */
+        /** Get a component from the entity */
         template <typename T>
         T* getComponent();
 
-        /* Get a component from the entity (arg is unused)
+        /** Get a component from the entity (arg is unused)
         This method makes it possible to specify T from lua */
         template <typename T>
         T* getComponent(const T&);
 
-        /* Fail to get a component type to the entity - to prevent blank swig calls */
+        /** Fail to get a component type to the entity - to prevent blank swig calls */
         void removeComponent();
 
-        /* Remove a component from the entity */
+        /** Remove a component from the entity */
         template <typename T>
         void removeComponent();
 
-        /* Remove a component from the entity (arg is unused)
+        /** Remove a component from the entity (arg is unused)
         This method makes it possible to specify T from lua */
         template <typename T>
         void removeComponent(const T&);
 
-        /* Update this entity */
+        /** Update this entity */
         void update(float dt);
 
-        /* Render this entity */
+        /** Render this entity */
         void render();
 
     private:
 
-        /* The components this entity has */
+        /** The components this entity has */
         std::map<std::type_index, std::unique_ptr<Component>> mComponents;
 
     };
 
-    /* Fail to add a component type to the entity - to prevent blank swig calls */
+    /** Fail to add a component type to the entity - to prevent blank swig calls */
     inline void Entity::addComponent()
     {
         fprintf(stderr, "addComponent() - No component type specified.\n");
     }
 
-    /* Add a component to the entity */
+    /** Add a component to the entity */
     template <typename T>
     T* Entity::addComponent()
     {
@@ -82,7 +82,7 @@ namespace ca2d
         return ptr;
     }
 
-    /* Add a component to the entity */
+    /** Add a component to the entity */
     template <typename T, typename... Args>
     T* Entity::addComponent(Args... args)
     {
@@ -94,7 +94,7 @@ namespace ca2d
         return ptr;
     }
 
-    /* Add a component to the entity */
+    /** Add a component to the entity */
     template <typename T>
     T* Entity::addComponent(const T& other)
     {
@@ -106,13 +106,13 @@ namespace ca2d
         return ptr;
     }
 
-    /* Fail to get a component type from the entity - to prevent blank swig calls */
+    /** Fail to get a component type from the entity - to prevent blank swig calls */
     inline void Entity::getComponent()
     {
         fprintf(stderr, "getComponent() - No component type specified.\n");
     }
 
-    /* Get a component from the entity */
+    /** Get a component from the entity */
     template <typename T>
     T* Entity::getComponent()
     {
@@ -122,7 +122,7 @@ namespace ca2d
         return static_cast<T*>(mComponents.at(typeid(T)).get());
     }
 
-    /* Get a component from the entity (arg is unused)
+    /** Get a component from the entity (arg is unused)
        This method makes it possible to specify T from lua */
     template <typename T>
     T* Entity::getComponent(const T&)
@@ -133,20 +133,20 @@ namespace ca2d
         return static_cast<T*>(mComponents.at(typeid(T)).get());
     }
 
-    /* Fail to get a component type to the entity - to prevent blank swig calls */
+    /** Fail to get a component type to the entity - to prevent blank swig calls */
     inline void Entity::removeComponent()
     {
         fprintf(stderr, "removeComponent() - No component type specified.\n");
     }
 
-    /* Remove a component from the entity */
+    /** Remove a component from the entity */
     template <typename T>
     void Entity::removeComponent()
     {
         mComponents.erase(typeid(T));
     }
 
-    /* Remove a component from the entity (arg is unused)
+    /** Remove a component from the entity (arg is unused)
     This method makes it possible to specify T from lua */
     template <typename T>
     void Entity::removeComponent(const T&)
@@ -155,7 +155,7 @@ namespace ca2d
         mComponents.erase(typeid(T));
     }
 
-    /* Update this entity */
+    /** Update this entity */
     inline void Entity::update(float dt)
     {
         for (auto& comp : mComponents)
@@ -164,7 +164,7 @@ namespace ca2d
         }
     }
 
-    /* Render this entity */
+    /** Render this entity */
     inline void Entity::render()
     {
         for (auto& comp : mComponents)

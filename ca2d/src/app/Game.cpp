@@ -14,7 +14,7 @@ namespace ca2d
 {
     extern "C" int luaopen_engine(lua_State*);
 
-    /* Create a game with the specified window parameters */
+    /** Create a game with the specified window parameters */
     Game::Game(int width, int height)
         : mRunning(true), OpenGLWindow(width, height)
     {
@@ -47,14 +47,14 @@ namespace ca2d
         mLuaEngine.setGlobal("ca2d::Game *", "game", this);
     }
 
-    /* Clean up application resources */
+    /** Clean up application resources */
     Game::~Game()
     {
         fclose(stdin);
         mLuaThread.detach();
     }
 
-    /* Update the game */
+    /** Update the game */
     void Game::update(double dt)
     {
         for (auto& ent : mEntities)
@@ -63,7 +63,7 @@ namespace ca2d
         }
     }
 
-    /* Render the game */
+    /** Render the game */
     void Game::render()
     {
         // Clear screen
@@ -77,7 +77,7 @@ namespace ca2d
         }
     }
 
-    /* The game's main loop */
+    /** The game's main loop */
     bool Game::run()
     {
         if (!mRunning)
@@ -132,7 +132,7 @@ namespace ca2d
         return mRunning;
     }
 
-    /* Create an entity */
+    /** Create an entity */
     Entity* Game::createEntity()
     {
         Entity* e = new Entity();
@@ -142,13 +142,13 @@ namespace ca2d
         return e;
     }
 
-    /* Clear entities */
+    /** Clear entities */
     void Game::clearEntities()
     {
         mEntities.clear();
     }
 
-    /* Get current time in seconds */
+    /** Get current time in seconds */
     double Game::getTime() const
     {
         return SDL_GetTicks() / 1000.0;

@@ -13,28 +13,28 @@
 namespace ca2d
 {
 
-    /* Initialises lua library and state */
+    /** Initialises lua library and state */
     LuaEngine::LuaEngine()
     {
         // Create lua state
         mLuaState = luaL_newstate();
     }
 
-    /* Cleans up lua state */
+    /** Cleans up lua state */
     LuaEngine::~LuaEngine()
     {
         // Destroy lua state
         lua_close(mLuaState);
     }
 
-    /* Loads the standard lua libs */
+    /** Loads the standard lua libs */
     void LuaEngine::loadStandardLibs()
     {
         // Load standard lua libs
         luaL_openlibs(mLuaState);
     }
 
-    /* Runs lua prompt in stdin/stdout */
+    /** Runs lua prompt in stdin/stdout */
     void LuaEngine::prompt(std::mutex* safeUpdateMutex)
     {
         std::unique_lock<std::mutex> lock(*safeUpdateMutex, std::defer_lock);
@@ -59,14 +59,14 @@ namespace ca2d
             if (error)
             {
                 fprintf(stderr, "%s\n", lua_tostring(mLuaState, -1));
-                lua_pop(mLuaState, 1);  /* pop error message from the stack */
+                lua_pop(mLuaState, 1);  /** pop error message from the stack */
             }
 
             std::cout << "> ";
         }
     }
 
-    /* Require lua file */
+    /** Require lua file */
     bool LuaEngine::require(const char* filename)
     {
         // Build command
@@ -79,7 +79,7 @@ namespace ca2d
         return runCommand(ss.str().c_str());
     }
 
-    /* Run lua file */
+    /** Run lua file */
     bool LuaEngine::dofile(const char* filename)
     {
         // Build command
@@ -92,7 +92,7 @@ namespace ca2d
         return runCommand(ss.str().c_str());
     }
 
-    /* Run lua command */
+    /** Run lua command */
     bool LuaEngine::runCommand(const char* command)
     {
         if (luaL_loadbuffer(mLuaState, command, strlen(command), "line") || lua_pcall(mLuaState, 0, 0, 0))
@@ -108,7 +108,7 @@ namespace ca2d
         return true;
     }
 
-    /* Set a global variable */
+    /** Set a global variable */
     void LuaEngine::setGlobal(const char* type, const char* name, void* ptr)
     {
         swig_type_info* typeinfo = SWIG_TypeQuery(mLuaState, type);

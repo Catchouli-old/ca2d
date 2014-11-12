@@ -7,7 +7,7 @@
 namespace ca2d
 {
 
-    /* Create an OpenGL window of the specified width and height */
+    /** Create an OpenGL window of the specified width and height */
     OpenGLWindow::OpenGLWindow(int width, int height)
     {
         // Initialise SDL
@@ -28,7 +28,7 @@ namespace ca2d
         atexit(SDL_Quit);
     }
 
-    /* Swap buffers */
+    /** Swap buffers */
     void OpenGLWindow::swap()
     {
         SDL_GL_SwapBuffers();

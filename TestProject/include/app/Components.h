@@ -167,7 +167,7 @@ class CircleRenderer
 {
 public:
 
-    /* Render a circle at position */
+    /** Render a circle at position */
     void render() override
     {
         const Position defaultPosition;
@@ -241,7 +241,7 @@ class CircleCollider
 {
 public:
 
-    /* Render a circle at position */
+    /** Render a circle at position */
     void render() override
     {
         const Radius defaultRadius;

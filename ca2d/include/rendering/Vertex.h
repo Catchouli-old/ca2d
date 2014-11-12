@@ -8,10 +8,10 @@ namespace ca2d
     struct Vertex2D
     {
         
-        /* The position in world space of this vertex */
+        /** The position in world space of this vertex */
         glm::vec3 pos;
 
-        /* The texture coordinates of this vertex */
+        /** The texture coordinates of this vertex */
         glm::vec2 uv;
     };
 }

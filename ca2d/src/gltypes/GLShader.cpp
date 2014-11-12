@@ -5,7 +5,7 @@
 namespace ca2d
 {
 
-    /* Compile a glsl shader */
+    /** Compile a glsl shader */
 	bool compileShader(GLuint shader, const char* filename, const char* source)
 	{
 		GLint compiled;
@@ -43,7 +43,7 @@ namespace ca2d
 		return true;
     }
 
-    /* Creates and attemptps to compile a glsl shader */
+    /** Creates and attemptps to compile a glsl shader */
     GLShader::GLShader(GLuint type, const char* filename)
         : mShader(glCreateShader(type))
     {

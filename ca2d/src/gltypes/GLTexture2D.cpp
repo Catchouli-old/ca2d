@@ -8,14 +8,14 @@
 namespace ca2d
 {
 
-    /* The deleter in charge of cleaning up texture handles */
+    /** The deleter in charge of cleaning up texture handles */
 	auto textureDeleter = [](GLuint *t)
 	{
 		glDeleteTextures(1, t);
 		delete t;
 	};
 
-    /* Creates a texture with the specified minification and magnification filters */
+    /** Creates a texture with the specified minification and magnification filters */
 	GLTexture2D::GLTexture2D(GLint minFilter, GLint magFilter,
         GLint wrapU, GLint wrapV)
         : mLoaded(false), mMinFilter(minFilter), mMagFilter(magFilter),
@@ -26,7 +26,7 @@ namespace ca2d
 		mTextureId = std::shared_ptr<GLuint>(new GLuint(textureId), textureDeleter);
 	}
 
-    /* Creates a texture from an image file with the specified min and mag filters */
+    /** Creates a texture from an image file with the specified min and mag filters */
     GLTexture2D::GLTexture2D(const char* filename, GLint minFilter, GLint magFilter,
         GLint wrapU, GLint wrapV)
         : mLoaded(false), mMinFilter(minFilter), mMagFilter(magFilter),
@@ -38,7 +38,7 @@ namespace ca2d
 		load(filename);
     }
 
-    /* Allocate device memory for a texture */
+    /** Allocate device memory for a texture */
     void GLTexture2D::allocate(int width, int height, GLenum format)
     {
         mLoaded = true;
@@ -57,7 +57,7 @@ namespace ca2d
         glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_RGBA, nullptr);
     }
 
-    /* Load texture from an image file */
+    /** Load texture from an image file */
 	bool GLTexture2D::load(const char* filename)
 	{
         // Load image
@@ -88,7 +88,7 @@ namespace ca2d
         return mLoaded;
 	}
 
-    /* Load texture from memory */
+    /** Load texture from memory */
     bool GLTexture2D::load(uint32_t* buf, int width, int height)
     {
         mWidth = width;
@@ -109,13 +109,13 @@ namespace ca2d
         return true;
     }
 
-    /* Bind this texture to the current texture unit */
+    /** Bind this texture to the current texture unit */
 	void GLTexture2D::bind() const
 	{
 		glBindTexture(GL_TEXTURE_2D, *mTextureId.get());
     }
 
-    /* Bind this texture to a particular texture unit */
+    /** Bind this texture to a particular texture unit */
     void GLTexture2D::bind(GLenum unit) const
     {
         glActiveTexture(unit);

@@ -9,16 +9,16 @@ class TestApp
 {
 public:
 
-    /* Create default TestApp */
+    /** Create default TestApp */
     TestApp();
 
-    /* Clean up application resources */
+    /** Clean up application resources */
     ~TestApp();
 
-    /* Update TestApp */
+    /** Update TestApp */
     void update(double dt) override;
 
-    /* Render TestApp */
+    /** Render TestApp */
     void render() override;
 
 protected:

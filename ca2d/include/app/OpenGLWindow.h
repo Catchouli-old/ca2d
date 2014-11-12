@@ -8,15 +8,15 @@ namespace ca2d
     {
     public:
 
-        /* Create an OpenGL window of the specified width and height */
+        /** Create an OpenGL window of the specified width and height */
         OpenGLWindow(int width, int height);
 
-        /* Swap buffers */
+        /** Swap buffers */
         void swap();
 
     private:
 
-        /* SDL state */
+        /** SDL state */
         SDL_Surface* mSDLsurface;
 
     };

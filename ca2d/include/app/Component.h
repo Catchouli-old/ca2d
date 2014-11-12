@@ -1,6 +1,6 @@
 #pragma once
 
-/* Macro for registering component with swig */
+/** Macro for registering component with swig */
 #ifdef SWIG
 
     #define DECLARE_COMPONENT(x, y) \
