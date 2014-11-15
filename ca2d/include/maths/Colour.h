@@ -6,7 +6,7 @@
 
 namespace ca2d
 {
-    /** Implements a colour class, inheriting from vec4 for built in operators and such */
+    /** Allows colours to be specified using floating point values */
     struct Colour
     {
 

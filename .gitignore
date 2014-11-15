@@ -31,3 +31,9 @@
 /bin
 /obj
 /tools
+/swig/Components.i
+/swig/engine.exp
+/swig/file
+/swig/lua.i
+/swig/lua_wrap.cxx
+/swig/tmp

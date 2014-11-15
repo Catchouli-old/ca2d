@@ -89,7 +89,7 @@ struct Position
     float x, y;
 
 };
-DECLARE_COMPONENT(Position, Position)
+DECLARE_COMPONENT(Position)
 
 struct Color
     : public Component
@@ -100,7 +100,7 @@ struct Color
     float r, g, b;
 
 };
-DECLARE_COMPONENT(Color, Color)
+DECLARE_COMPONENT(Color)
 
 struct MouseFollow
     : public Component
@@ -108,7 +108,7 @@ struct MouseFollow
 
     void update(float dt) override
     {
-        Position* p = mEntity->getComponent<Position>();
+        Position* p = getEntity()->getComponent<Position>();
 
         if (p != nullptr)
         {
@@ -127,7 +127,7 @@ struct MouseFollow
     }
 
 };
-DECLARE_COMPONENT(MouseFollow, MouseFollow)
+DECLARE_COMPONENT(MouseFollow)
 
 struct Velocity
     : public Component
@@ -137,7 +137,7 @@ struct Velocity
 
     void update(float dt) override
     {
-        Position* p = mEntity->getComponent<Position>();
+        Position* p = getEntity()->getComponent<Position>();
 
         if (p != nullptr)
         {
@@ -149,7 +149,7 @@ struct Velocity
     float x, y;
 
 };
-DECLARE_COMPONENT(Velocity, Velocity)
+DECLARE_COMPONENT(Velocity)
 
 struct Radius
     : public Component
@@ -160,7 +160,7 @@ struct Radius
     float v;
 
 };
-DECLARE_COMPONENT(Radius, Radius)
+DECLARE_COMPONENT(Radius)
 
 class CircleRenderer
     : public Component
@@ -174,9 +174,9 @@ public:
         const Radius defaultRadius;
         const Color defaultColour(1.0f, 1.0f, 1.0f);
 
-        const Position* p = mEntity->getComponent<Position>();
-        const Radius* r = mEntity->getComponent<Radius>();
-        const Color* c = mEntity->getComponent<Color>();
+        const Position* p = getEntity()->getComponent<Position>();
+        const Radius* r = getEntity()->getComponent<Radius>();
+        const Color* c = getEntity()->getComponent<Color>();
 
         if (p == nullptr)
             p = &defaultPosition;
@@ -234,7 +234,7 @@ public:
     }
 
 };
-DECLARE_COMPONENT(CircleRenderer, CircleRenderer)
+DECLARE_COMPONENT(CircleRenderer)
 
 class CircleCollider
     : public Component
@@ -246,9 +246,9 @@ public:
     {
         const Radius defaultRadius;
 
-        Position* p = mEntity->getComponent<Position>();
-        Velocity* v = mEntity->getComponent<Velocity>();
-        const Radius* r = mEntity->getComponent<Radius>();
+        Position* p = getEntity()->getComponent<Position>();
+        Velocity* v = getEntity()->getComponent<Velocity>();
+        const Radius* r = getEntity()->getComponent<Radius>();
 
         if (r == nullptr)
             r = &defaultRadius;
@@ -292,4 +292,4 @@ public:
     }
 
 };
-DECLARE_COMPONENT(CircleCollider, CircleCollider)
+DECLARE_COMPONENT(CircleCollider)

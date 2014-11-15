@@ -29,7 +29,7 @@ namespace ca2d
         /** Get the rotation of this camera */
         const glm::quat& getRotation() const;
 
-        /** Set the position of this camera */
+        /** Set the rotation of this camera */
         void setRotation(const glm::quat& rotation);
 
         /** Get a forward-facing vector for this camera */
@@ -96,19 +96,19 @@ namespace ca2d
         mRotation = rotation;
     }
 
-    /** Get the forward vector for this camera */
+    /** Get a forward-facing vector for this camera */
     inline const glm::vec3& Camera::getForward() const
     {
         return mForward;
     }
 
-    /** Get the up vector for this camera */
+    /** Get an up-facing vector for this camera */
     inline const glm::vec3& Camera::getUp() const
     {
         return mUp;
     }
 
-    /** Get the left vector for this camera */
+    /** Get a right-facing vector for this camera */
     inline const glm::vec3& Camera::getRight() const
     {
         return mRight;
