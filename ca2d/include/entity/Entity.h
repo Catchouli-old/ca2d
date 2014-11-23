@@ -5,6 +5,7 @@
 #include <typeindex>
 
 #include "Component.h"
+#include "LuaComponent.h"
 
 namespace ca2d
 {
@@ -13,13 +14,13 @@ namespace ca2d
     public:
 
         /** Fail to add a component type to the entity - to prevent blank swig calls */
-        void addComponent();
+        //void addComponent();
 
         /** Add a component to the entity */
         template <typename T>
         T* addComponent();
 
-        /** Add a component to the entity */
+        /** Add a component to the entity which is constructed in place */
         template <typename T, typename... Args>
         T* addComponent(Args... args);
 
@@ -27,8 +28,16 @@ namespace ca2d
         template <typename T>
         T* addComponent(const T& other);
 
+        /** Add a lua component to the entity */
+        void addLuaComponent(LuaReference other, float time)
+        {
+            std::unique_ptr<LuaComponent> cmp = std::make_unique<LuaComponent>(other);
+
+            cmp->update(time);
+        }
+
         /** Fail to get a component type to the entity - to prevent blank swig calls */
-        void getComponent();
+        //void getComponent();
 
         /** Get a component from the entity */
         template <typename T>
@@ -40,7 +49,7 @@ namespace ca2d
         T* getComponent(const T&);
 
         /** Fail to get a component type to the entity - to prevent blank swig calls */
-        void removeComponent();
+        //void removeComponent();
 
         /** Remove a component from the entity */
         template <typename T>
@@ -61,14 +70,15 @@ namespace ca2d
 
         /** The components this entity has */
         std::map<std::type_index, std::unique_ptr<Component>> mComponents;
+        std::vector<std::unique_ptr<LuaComponent>> mLuaComponents;
 
     };
 
     /** Fail to add a component type to the entity - to prevent blank swig calls */
-    inline void Entity::addComponent()
-    {
-        fprintf(stderr, "addComponent() - No component type specified.\n");
-    }
+    //inline void Entity::addComponent()
+    //{
+    //    fprintf(stderr, "addComponent() - No component type specified.\n");
+    //}
 
     /** Add a component to the entity */
     template <typename T>
@@ -107,10 +117,10 @@ namespace ca2d
     }
 
     /** Fail to get a component type from the entity - to prevent blank swig calls */
-    inline void Entity::getComponent()
-    {
-        fprintf(stderr, "getComponent() - No component type specified.\n");
-    }
+    //inline void Entity::getComponent()
+    //{
+    //    fprintf(stderr, "getComponent() - No component type specified.\n");
+    //}
 
     /** Get a component from the entity */
     template <typename T>
@@ -134,10 +144,10 @@ namespace ca2d
     }
 
     /** Fail to get a component type to the entity - to prevent blank swig calls */
-    inline void Entity::removeComponent()
-    {
-        fprintf(stderr, "removeComponent() - No component type specified.\n");
-    }
+    //inline void Entity::removeComponent()
+    //{
+    //    fprintf(stderr, "removeComponent() - No component type specified.\n");
+    //}
 
     /** Remove a component from the entity */
     template <typename T>
@@ -161,6 +171,11 @@ namespace ca2d
         for (auto& comp : mComponents)
         {
             comp.second->update(dt);
+        }
+
+        for (auto& comp : mLuaComponents)
+        {
+            //comp->update(dt);
         }
     }
 

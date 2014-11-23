@@ -15,16 +15,22 @@ namespace ca2d
 
     /** Initialises lua library and state */
     LuaEngine::LuaEngine()
+        : mCleanup(true)
     {
         // Create lua state
         mLuaState = luaL_newstate();
+
+        // Store a pointer to this instance in the lua state
+        lua_pushlightuserdata(mLuaState, this);
+        lua_setglobal(mLuaState, "luaEnginePtr");
     }
 
     /** Cleans up lua state */
     LuaEngine::~LuaEngine()
     {
         // Destroy lua state
-        lua_close(mLuaState);
+        if (mCleanup)
+            lua_close(mLuaState);
     }
 
     /** Loads the standard lua libs */
@@ -122,5 +128,13 @@ namespace ca2d
         lua_setglobal(mLuaState, name);
     }
 
+    /** Get a lua engine back from the lua state */
+    LuaEngine* LuaEngine::fromLuaState(lua_State* luaState)
+    {
+        lua_getglobal(luaState, "luaEnginePtr");
+        void* ptr = (void*)lua_topointer(luaState, -1);
+
+        return static_cast<LuaEngine*>(ptr);
+    }
 
 }

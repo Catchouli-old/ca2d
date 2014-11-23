@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="include\app\Components.h" />
     <ClInclude Include="include\app\TestApp.h" />
+    <ClInclude Include="include\util\MemoryLeakDetection.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\swig\lua_wrap.cxx" />
@@ -96,7 +97,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>include;$(SolutionDir)ca2d/include;$(SolutionDir)dep/include;$(SolutionDir)dep/windows/include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_MBCS;GLM_FORCE_RADIANS;MAIN_COMPILATION;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_MBCS;GLM_FORCE_RADIANS;MAIN_COMPILATION;_CRT_SECURE_NO_WARNINGS;MEMLEAK_CHECK;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <CompileAsWinRT>false</CompileAsWinRT>
     </ClCompile>
@@ -127,7 +128,7 @@ glue</Command>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>include;$(SolutionDir)ca2d/include;$(SolutionDir)dep/include;$(SolutionDir)dep/windows/include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_MBCS;GLM_FORCE_RADIANS;MAIN_COMPILATION;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_MBCS;GLM_FORCE_RADIANS;MAIN_COMPILATION;_CRT_SECURE_NO_WARNINGS;MEMLEAK_CHECK;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <CompileAsWinRT>false</CompileAsWinRT>
     </ClCompile>

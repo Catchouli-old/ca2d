@@ -8,6 +8,8 @@
 
 #include "rendering/OpenGL.h"
 
+#include <fstream>
+
 #include "SDL/SDL.h"
 
 namespace ca2d
@@ -28,9 +30,6 @@ namespace ca2d
 
         // Load lua libs
         mLuaEngine.loadStandardLibs();
-
-        // Set up lua thread
-        mLuaThread = std::thread(&LuaEngine::prompt, &mLuaEngine, &mGameStateMutex);
         
         // Load engine bindings
         luaL_requiref(mLuaEngine.getLuaState(), "engine", luaopen_engine, 0);
@@ -50,8 +49,7 @@ namespace ca2d
     /** Clean up application resources */
     Game::~Game()
     {
-        fclose(stdin);
-        mLuaThread.detach();
+
     }
 
     /** Update the game */
@@ -59,7 +57,7 @@ namespace ca2d
     {
         for (auto& ent : mEntities)
         {
-            ent->update((float)dt);
+            //ent->update((float)dt);
         }
     }
 
@@ -118,12 +116,10 @@ namespace ca2d
         }
 
         // Update
-        mGameStateMutex.lock();
         update(std::chrono::duration_cast<std::chrono::duration<float, std::chrono::seconds::period>>(diff).count());
 
         // Render
         render();
-        mGameStateMutex.unlock();
 
         // Flip buffers
         swap();

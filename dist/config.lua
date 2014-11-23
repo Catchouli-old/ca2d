@@ -10,3 +10,5 @@ height = 300
 function f (x, y)
 	return x ^ y
 end
+
+print("CONFIG")

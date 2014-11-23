@@ -9,8 +9,9 @@
 #include <memory>
 #include <vector>
 #include <mutex>
+#include <sstream>
 
-#include "Entity.h"
+#include "../entity/Entity.h"
 
 namespace ca2d
 {
@@ -65,12 +66,6 @@ namespace ca2d
         /** Framerate counter */
         uint32_t mLastFpsUpdate;
         int mFrames, mFPS;
-
-        /** The lua prompt thread */
-        std::thread mLuaThread;
-
-        /** Game state mutex */
-        std::mutex mGameStateMutex;
 
         /** The entities */
         std::vector<std::unique_ptr<Entity>> mEntities;

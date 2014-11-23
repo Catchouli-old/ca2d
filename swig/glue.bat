@@ -11,6 +11,10 @@ for /f "delims==" %%g in ('dir /s/b ..\TestProject\*.h') do @echo #include "%%g"
 
 @echo %%} >> %OUT_INTERFACE%
 
+for /f "delims==" %%g in ('dir /s/b interface\*.i') do @echo %%include "%%g" >> %OUT_INTERFACE%
+
+pause
+
 for /f "delims==" %%g in ('dir /s/b ..\ca2d\*.h') do @echo %%include "%%g" >> %OUT_INTERFACE%
 for /f "delims==" %%g in ('dir /s/b ..\TestProject\*.h') do @echo %%include "%%g" >> %OUT_INTERFACE%
 

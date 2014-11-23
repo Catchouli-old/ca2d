@@ -19,10 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\app\Component.h" />
-    <ClInclude Include="include\app\Entity.h" />
+    <ClInclude Include="include\entity\Component.h" />
+    <ClInclude Include="include\entity\Entity.h" />
     <ClInclude Include="include\app\Game.h" />
     <ClInclude Include="include\app\OpenGLWindow.h" />
+    <ClInclude Include="include\entity\LuaComponent.h" />
     <ClInclude Include="include\gltypes\GLShader.h" />
     <ClInclude Include="include\gltypes\GLShaderProgram.h" />
     <ClInclude Include="include\gltypes\GLTexture2D.h" />
@@ -34,6 +35,8 @@
     <ClInclude Include="include\rendering\Camera.h" />
     <ClInclude Include="include\rendering\Vertex.h" />
     <ClInclude Include="include\resources\File.h" />
+    <ClInclude Include="include\scripting\LuaReference.h" />
+    <ClInclude Include="include\scripting\LuaValue.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\app\Game.cpp" />
@@ -46,6 +49,10 @@
     <ClCompile Include="src\maths\Maths.cpp" />
     <ClCompile Include="src\resources\File.cpp" />
     <ClCompile Include="src\scripting\LuaEngine.cpp" />
+    <ClCompile Include="src\scripting\LuaReference.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="include\scripting\LuaEngine.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{9A354D11-CD60-48E6-8E58-1A60CE100F31}</ProjectGuid>

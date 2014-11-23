@@ -21,6 +21,9 @@
     <ClInclude Include="include\app\Components.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\util\MemoryLeakDetection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\app\TestApp.cpp">

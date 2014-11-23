@@ -17,12 +17,12 @@ TestApp::TestApp()
 {
     // Load scene
     mLuaEngine.dofile("scene.lua");
+    mLuaEngine.require("test");
 }
 
 /** Clean up application resources */
 TestApp::~TestApp()
 {
-
 }
 
 /** Update TestApp */
