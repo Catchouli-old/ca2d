@@ -104,7 +104,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)dep/windows/lib/$(Platform)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>ca2d.lib;SDL.lib;SDLmain.lib;opengl32.lib;glew32.lib;SDL_image.lib;lua52.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ca2d.lib;SDL2.lib;SDL2main.lib;opengl32.lib;glew32.lib;SDL2_image.lib;lua52.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
       <ShowProgress>NotSet</ShowProgress>
       <EntryPointSymbol>
@@ -135,7 +135,7 @@ glue</Command>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)dep/windows/lib/$(Platform)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>ca2d.lib;SDL.lib;SDLmain.lib;opengl32.lib;glew32.lib;SDL_image.lib;lua52.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ca2d.lib;SDL2.lib;SDL2main.lib;opengl32.lib;glew32.lib;SDL2_image.lib;lua52.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
       <ShowProgress>NotSet</ShowProgress>
       <EntryPointSymbol>
@@ -169,7 +169,7 @@ glue</Command>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)dep/windows/lib/$(Platform)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>ca2d.lib;SDL.lib;SDLmain.lib;opengl32.lib;glew32.lib;SDL_image.lib;lua52.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ca2d.lib;SDL2.lib;SDL2main.lib;opengl32.lib;glew32.lib;SDL2_image.lib;lua52.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
       <ShowProgress>NotSet</ShowProgress>
       <EntryPointSymbol>
@@ -203,7 +203,7 @@ glue</Command>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)dep/windows/lib/$(Platform)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>ca2d.lib;SDL.lib;SDLmain.lib;opengl32.lib;glew32.lib;SDL_image.lib;lua52.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ca2d.lib;SDL2.lib;SDL2main.lib;opengl32.lib;glew32.lib;SDL2_image.lib;lua52.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
       <ShowProgress>NotSet</ShowProgress>
       <EntryPointSymbol>

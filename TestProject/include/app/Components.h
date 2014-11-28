@@ -3,7 +3,7 @@
 #include <entity/Entity.h>
 #include <scripting/LuaReference.h>
 
-#include <SDL/SDL.h>
+#include <SDL2/SDL.h>
 #include <GL/glew.h>
 
 #include <iostream>
@@ -103,8 +103,8 @@ struct MouseFollow
 
         if (p != nullptr)
         {
-            static float w = (float)SDL_GetVideoSurface()->w;
-            static float h = (float)SDL_GetVideoSurface()->h;
+            static float w = 800;
+            static float h = 600;
 
             int x, y;
             SDL_GetMouseState(&x, &y);
@@ -248,8 +248,8 @@ public:
         if (p != nullptr && v != nullptr)
         {
             // Window width and height
-            static float w = (float)SDL_GetVideoSurface()->w;
-            static float h = (float)SDL_GetVideoSurface()->h;
+            static float w = 800;
+            static float h = 600;
 
             // Viewport max x and y (negative max too)
             float vw = 1.0f * w / h;

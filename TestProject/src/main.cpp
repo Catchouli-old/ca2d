@@ -2,6 +2,11 @@
 
 #include "app/TestApp.h"
 
+#include <entity/managers/VariableManager.h>
+
+#include <iostream>
+#include <sstream>
+
 int main(int argc, char** argv)
 {
     // Initialise memory leak detection on platforms where it's available

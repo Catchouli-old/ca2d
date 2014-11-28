@@ -1,6 +1,8 @@
 #pragma once
 
 #include "OpenGLWindow.h"
+#include "../entity/Entity.h"
+#include "../entity/Engine.h"
 #include "../scripting/LuaEngine.h"
 
 #include <stdint.h>
@@ -11,12 +13,9 @@
 #include <mutex>
 #include <sstream>
 
-#include "../entity/Entity.h"
-
 namespace ca2d
 {
     class Game
-        : public OpenGLWindow
     {
     public:
 
@@ -32,17 +31,14 @@ namespace ca2d
         /** Render the game */
         virtual void render();
 
+        /** Handle an event */
+        virtual bool handleEvent(SDL_Event event);
+
         /** The game's main loop */
         bool run();
 
         /** Whether the game should be running */
         bool isRunning() const;
-
-        /** Create an entity */
-        Entity* createEntity();
-
-        /** Clear entities */
-        void clearEntities();
 
         /** Get current time in seconds */
         double getTime() const;
@@ -55,6 +51,12 @@ namespace ca2d
         /** Whether the game should be running */
         bool mRunning;
 
+        /** The game's main window */
+        OpenGLWindow mWindow;
+
+        /** The entity engine */
+        Engine mEngine;
+
         /** The main lua engine */
         LuaEngine mLuaEngine;
 
@@ -66,9 +68,6 @@ namespace ca2d
         /** Framerate counter */
         uint32_t mLastFpsUpdate;
         int mFrames, mFPS;
-
-        /** The entities */
-        std::vector<std::unique_ptr<Entity>> mEntities;
 
     };
 

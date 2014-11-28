@@ -2,7 +2,7 @@ function loadscene(scene)
 
 	for entkey, entity in pairs(scene["entities"]) do
 			
-		local e = game:createEntity()
+		local e = engine:createEntity()
 	
 		for compkey, component in pairs(entity) do
 		

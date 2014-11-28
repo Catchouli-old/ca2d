@@ -17,7 +17,7 @@ inline void setupMemoryLeakDetection()
     _CrtSetReportFile(_CRT_ERROR, _CRTDBG_FILE_STDOUT);
     _CrtSetReportMode(_CRT_ASSERT, _CRTDBG_MODE_FILE);
     _CrtSetReportFile(_CRT_ASSERT, _CRTDBG_FILE_STDOUT);
-    atexit([]() { _CrtDumpMemoryLeaks(); system("pause"); });
+    atexit([]() { if (_CrtDumpMemoryLeaks()) system("pause"); });
 #else
 
 #endif

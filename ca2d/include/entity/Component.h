@@ -57,6 +57,7 @@ namespace ca2d
         return mEntity;
     }
 
+    /* Set the entity this component belongs to */
     inline void Component::setEntity(Entity* ent)
     {
         mEntity = ent;

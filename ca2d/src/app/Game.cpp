@@ -10,7 +10,7 @@
 
 #include <fstream>
 
-#include "SDL/SDL.h"
+#include <SDL2/SDL.h>
 
 namespace ca2d
 {
@@ -18,7 +18,7 @@ namespace ca2d
 
     /** Create a game with the specified window parameters */
     Game::Game(int width, int height)
-        : mRunning(true), OpenGLWindow(width, height)
+        : mRunning(true), mWindow(width, height)
     {
         // Initialise game timer
         mLastUpdate = std::chrono::high_resolution_clock::now();
@@ -42,8 +42,9 @@ namespace ca2d
         mLuaEngine.runCommand("for key,value in pairs(engine) do print(key) end");
         mLuaEngine.runCommand("io.write(\"> \")");
 
-        // Push game into lua globals
+        // Push game and engine into lua globals
         mLuaEngine.setGlobal("ca2d::Game *", "game", this);
+        mLuaEngine.setGlobal("ca2d::Engine *", "engine", &mEngine);
     }
 
     /** Clean up application resources */
@@ -55,10 +56,7 @@ namespace ca2d
     /** Update the game */
     void Game::update(double dt)
     {
-        for (auto& ent : mEntities)
-        {
-            //ent->update((float)dt);
-        }
+
     }
 
     /** Render the game */
@@ -68,11 +66,14 @@ namespace ca2d
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
-        // Render entities
-        for (auto& ent : mEntities)
-        {
-            ent->render();
-        }
+        mEngine.processEntities();
+    }
+
+    /** Handle an event. The return value indicates whether this event should still
+        be processed by the inbuilt event handling. (default: true) */
+    bool Game::handleEvent(SDL_Event event)
+    {
+        return true;
     }
 
     /** The game's main loop */
@@ -122,26 +123,10 @@ namespace ca2d
         render();
 
         // Flip buffers
-        swap();
+        mWindow.swap();
 
         // Return whether we should keep running
         return mRunning;
-    }
-
-    /** Create an entity */
-    Entity* Game::createEntity()
-    {
-        Entity* e = new Entity();
-
-        mEntities.push_back(std::unique_ptr<Entity>(e));
-
-        return e;
-    }
-
-    /** Clear entities */
-    void Game::clearEntities()
-    {
-        mEntities.clear();
     }
 
     /** Get current time in seconds */

@@ -6,7 +6,7 @@
 
 #include <sstream>
 
-#include <SDL/SDL.h>
+#include <SDL2/SDL.h>
 #include <rendering/OpenGL.h>
 
 #include "app/Components.h"
@@ -39,15 +39,15 @@ void TestApp::update(double dt)
 
         std::stringstream ss;
         ss << "FPS: " << fps;
-        SDL_WM_SetCaption(ss.str().c_str(), nullptr);
+        mWindow.setTitle(ss.str().c_str());
     }
 }
 
 /** Render TestApp */
 void TestApp::render()
 {
-    static float w = (float)SDL_GetVideoSurface()->w;
-    static float h = (float)SDL_GetVideoSurface()->h;
+    static float w = 800;
+    static float h = 600;
 
     glPushMatrix();
     glScalef(h / w, 1.0f, 1.0f);
