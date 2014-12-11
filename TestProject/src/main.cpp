@@ -1,11 +1,5 @@
-#include "util/MemoryLeakDetection.h"
-
 #include "app/TestApp.h"
-
-#include <entity/managers/VariableManager.h>
-
-#include <iostream>
-#include <sstream>
+#include "util/MemoryLeakDetection.h"
 
 int main(int argc, char** argv)
 {

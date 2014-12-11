@@ -8,6 +8,8 @@
  * interface file instead.
  * ----------------------------------------------------------------------------- */
 
+#pragma once
+
 /* -----------------------------------------------------------------------------
  *  This section contains generic SWIG labels for method/variable
  *  declarations/attributes, and other compiler dependent labels.

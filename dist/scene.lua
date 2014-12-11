@@ -1,8 +1,10 @@
+math.randomseed(os.time())
+
 function loadscene(scene)
 
 	for entkey, entity in pairs(scene["entities"]) do
 			
-		local e = engine:createEntity()
+		local e = world:createEntity()
 	
 		for compkey, component in pairs(entity) do
 		
@@ -25,21 +27,10 @@ scene =
 		{
 			CircleRenderer(),
 			CircleCollider(),
-			Position(math.random() * 2 - 1, math.random() * 2 - 1),
-			Velocity(math.random() * 5 - 2.5, math.random() * 5 - 2.5),
-			Radius(math.random() * 0.3),
+			Position(math.random(800), math.random(800)),
+			Velocity(math.random(500), math.random(500)),
+			Radius(math.random() * 50),
 			Color(math.random(), math.random(), math.random()),
-		},
-	
-		mousecircle =
-		{
-			CircleRenderer(),
-			CircleCollider(),
-			Position(math.random() * 2 - 1, math.random() * 2 - 1),
-			Velocity(math.random() * 5 - 2.5, math.random() * 5 - 2.5),
-			Radius(math.random() * 0.3),
-			Color(math.random(), math.random(), math.random()),
-			MouseFollow(),
 		},
 		
 	}

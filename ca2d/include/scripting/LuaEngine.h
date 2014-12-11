@@ -99,4 +99,4 @@ namespace ca2d
 }
 
 // Inline definitions
-#include "LuaEngine.inl"
+#include "LuaEngine.inl.h"

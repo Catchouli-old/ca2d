@@ -44,6 +44,9 @@ namespace ca2d
         /** Make the opengl context current */
         void makeContextCurrent();
 
+        /** Get the SDL2 window */
+        SDL_Window* getSDLWindow() const;
+
     private:
 
         /** Initialise SDL and create a window */
@@ -56,4 +59,10 @@ namespace ca2d
         std::unique_ptr<SDL_GLContext, SDLContextDeleter> mContext;
 
     };
+
+    /** Get the SDL2 window */
+    inline SDL_Window* OpenGLWindow::getSDLWindow() const
+    {
+        return mWindow.get();
+    }
 }

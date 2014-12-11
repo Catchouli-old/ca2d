@@ -20,6 +20,8 @@ namespace ca2d
     Game::Game(int width, int height)
         : mRunning(true), mWindow(width, height)
     {
+        mLuaPromptThread = std::thread(std::bind(&LuaEngine::prompt, &mLuaEngine, &mSafeUpdateMutex));
+
         // Initialise game timer
         mLastUpdate = std::chrono::high_resolution_clock::now();
 
@@ -44,7 +46,7 @@ namespace ca2d
 
         // Push game and engine into lua globals
         mLuaEngine.setGlobal("ca2d::Game *", "game", this);
-        mLuaEngine.setGlobal("ca2d::Engine *", "engine", &mEngine);
+        mLuaEngine.setGlobal("coment::World *", "world", &mWorld);
     }
 
     /** Clean up application resources */
@@ -56,7 +58,8 @@ namespace ca2d
     /** Update the game */
     void Game::update(double dt)
     {
-
+        // Set delta time
+        mWorld.setDelta((float)dt);
     }
 
     /** Render the game */
@@ -66,7 +69,8 @@ namespace ca2d
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
-        mEngine.processEntities();
+        // Update world
+        mWorld.update();
     }
 
     /** Handle an event. The return value indicates whether this event should still
@@ -116,11 +120,18 @@ namespace ca2d
             mLastFpsUpdate = SDL_GetTicks();
         }
 
-        // Update
-        update(std::chrono::duration_cast<std::chrono::duration<float, std::chrono::seconds::period>>(diff).count());
+        // Try and lock safe update mutex
+        if (mSafeUpdateMutex.try_lock())
+        {
+            // Update
+            update(std::chrono::duration_cast<std::chrono::duration<float, std::chrono::seconds::period>>(diff).count());
 
-        // Render
-        render();
+            // Render
+            render();
+
+            // Release safe update mutex
+            mSafeUpdateMutex.unlock();
+        }
 
         // Flip buffers
         mWindow.swap();

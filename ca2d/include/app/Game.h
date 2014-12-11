@@ -1,9 +1,9 @@
 #pragma once
 
 #include "OpenGLWindow.h"
-#include "../entity/Entity.h"
-#include "../entity/Engine.h"
 #include "../scripting/LuaEngine.h"
+
+#include <coment/World.h>
 
 #include <stdint.h>
 #include <chrono>
@@ -54,8 +54,8 @@ namespace ca2d
         /** The game's main window */
         OpenGLWindow mWindow;
 
-        /** The entity engine */
-        Engine mEngine;
+        /** The entity world */
+        coment::World mWorld;
 
         /** The main lua engine */
         LuaEngine mLuaEngine;
@@ -63,6 +63,8 @@ namespace ca2d
     private:
 
         /** Game timer */
+        std::thread mLuaPromptThread;
+        std::mutex mSafeUpdateMutex;
         std::chrono::system_clock::time_point mLastUpdate;
 
         /** Framerate counter */

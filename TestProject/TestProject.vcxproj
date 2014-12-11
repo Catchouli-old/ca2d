@@ -19,12 +19,21 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\app\Components.h" />
     <ClInclude Include="include\app\TestApp.h" />
-    <ClInclude Include="include\util\MemoryLeakDetection.h" />
+    <ClInclude Include="include\game\components\CircleCollider.h" />
+    <ClInclude Include="include\game\components\CircleRenderer.h" />
+    <ClInclude Include="include\game\components\Color.h" />
+    <ClInclude Include="include\game\components\MouseFollow.h" />
+    <ClInclude Include="include\game\components\Position.h" />
+    <ClInclude Include="include\game\components\Radius.h" />
+    <ClInclude Include="include\game\components\Velocity.h" />
+    <ClInclude Include="include\game\systems\CircleCollisionSystem.h" />
+    <ClInclude Include="include\game\systems\CircleRenderSystem.h" />
+    <ClInclude Include="include\game\systems\MouseFollowSystem.h" />
+    <ClInclude Include="include\game\systems\MovementSystem.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\swig\lua_wrap.cxx" />
+    <ClCompile Include="..\swig\testproject_wrap.cxx" />
     <ClCompile Include="src\app\TestApp.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
@@ -96,7 +105,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>include;$(SolutionDir)ca2d/include;$(SolutionDir)dep/include;$(SolutionDir)dep/windows/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;$(SolutionDir)ca2d/include;$(SolutionDir)coment/coment/include;$(SolutionDir)dep/include;$(SolutionDir)dep/windows/include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;GLM_FORCE_RADIANS;MAIN_COMPILATION;_CRT_SECURE_NO_WARNINGS;MEMLEAK_CHECK;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <CompileAsWinRT>false</CompileAsWinRT>
@@ -104,7 +113,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)dep/windows/lib/$(Platform)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>ca2d.lib;SDL2.lib;SDL2main.lib;opengl32.lib;glew32.lib;SDL2_image.lib;lua52.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ca2d.lib;coment.lib;SDL2.lib;SDL2main.lib;opengl32.lib;glew32.lib;SDL2_image.lib;SDL2_ttf.lib;lua52.lib;gwen.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
       <ShowProgress>NotSet</ShowProgress>
       <EntryPointSymbol>
@@ -119,7 +128,7 @@
     </PreLinkEvent>
     <PreBuildEvent>
       <Command>cd $(SolutionDir)\swig
-glue</Command>
+gluetestproject</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -127,7 +136,7 @@ glue</Command>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>include;$(SolutionDir)ca2d/include;$(SolutionDir)dep/include;$(SolutionDir)dep/windows/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;$(SolutionDir)ca2d/include;$(SolutionDir)coment/coment/include;$(SolutionDir)dep/include;$(SolutionDir)dep/windows/include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;GLM_FORCE_RADIANS;MAIN_COMPILATION;_CRT_SECURE_NO_WARNINGS;MEMLEAK_CHECK;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <CompileAsWinRT>false</CompileAsWinRT>
@@ -135,7 +144,7 @@ glue</Command>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)dep/windows/lib/$(Platform)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>ca2d.lib;SDL2.lib;SDL2main.lib;opengl32.lib;glew32.lib;SDL2_image.lib;lua52.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ca2d.lib;coment.lib;SDL2.lib;SDL2main.lib;opengl32.lib;glew32.lib;SDL2_image.lib;SDL2_ttf.lib;lua52.lib;gwen.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
       <ShowProgress>NotSet</ShowProgress>
       <EntryPointSymbol>
@@ -150,7 +159,7 @@ glue</Command>
     </PreLinkEvent>
     <PreBuildEvent>
       <Command>cd $(SolutionDir)\swig
-glue</Command>
+gluetestproject</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -160,7 +169,7 @@ glue</Command>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>include;$(SolutionDir)ca2d/include;$(SolutionDir)dep/include;$(SolutionDir)dep/windows/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;$(SolutionDir)ca2d/include;$(SolutionDir)coment/coment/include;$(SolutionDir)dep/include;$(SolutionDir)dep/windows/include</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <PreprocessorDefinitions>_MBCS;GLM_FORCE_RADIANS;MAIN_COMPILATION;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
@@ -169,7 +178,7 @@ glue</Command>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)dep/windows/lib/$(Platform)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>ca2d.lib;SDL2.lib;SDL2main.lib;opengl32.lib;glew32.lib;SDL2_image.lib;lua52.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ca2d.lib;coment.lib;SDL2.lib;SDL2main.lib;opengl32.lib;glew32.lib;SDL2_image.lib;SDL2_ttf.lib;lua52.lib;gwen.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
       <ShowProgress>NotSet</ShowProgress>
       <EntryPointSymbol>
@@ -184,7 +193,7 @@ glue</Command>
     </PreLinkEvent>
     <PreBuildEvent>
       <Command>cd $(SolutionDir)\swig
-glue</Command>
+gluetestproject</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -194,7 +203,7 @@ glue</Command>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>include;$(SolutionDir)ca2d/include;$(SolutionDir)dep/include;$(SolutionDir)dep/windows/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;$(SolutionDir)ca2d/include;$(SolutionDir)coment/coment/include;$(SolutionDir)dep/include;$(SolutionDir)dep/windows/include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;GLM_FORCE_RADIANS;MAIN_COMPILATION;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
@@ -203,7 +212,7 @@ glue</Command>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)dep/windows/lib/$(Platform)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>ca2d.lib;SDL2.lib;SDL2main.lib;opengl32.lib;glew32.lib;SDL2_image.lib;lua52.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ca2d.lib;coment.lib;SDL2.lib;SDL2main.lib;opengl32.lib;glew32.lib;SDL2_image.lib;SDL2_ttf.lib;lua52.lib;gwen.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
       <ShowProgress>NotSet</ShowProgress>
       <EntryPointSymbol>
@@ -218,7 +227,7 @@ glue</Command>
     </PreLinkEvent>
     <PreBuildEvent>
       <Command>cd $(SolutionDir)\swig
-glue</Command>
+gluetestproject</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

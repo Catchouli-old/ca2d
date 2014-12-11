@@ -2,8 +2,6 @@
 
 #include <app/Game.h>
 
-#include <thread>
-
 class TestApp
     : public ca2d::Game
 {

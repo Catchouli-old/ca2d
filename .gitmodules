@@ -1,0 +1,3 @@
+[submodule "coment"]
+	path = coment
+	url = https://github.com/Catchouli/coment.git
